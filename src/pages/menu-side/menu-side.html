@@ -1,0 +1,19 @@
+<ion-menu [content]="content" side="left" type="overlay">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>LOGO</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>

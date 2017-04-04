@@ -5,6 +5,7 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { GasStationsListPage } from '../pages/gas-stations-list/gas-stations-list';
 import { HomePage } from '../pages/home/home';
 import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
+import { MenuSidePage } from '../pages/menu-side/menu-side';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     UserProfilePage,
     GasStationsListPage,
     HomePage,
-    MenuTabsPage
+    MenuTabsPage,
+    MenuSidePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     UserProfilePage,
     GasStationsListPage,
     HomePage,
-    MenuTabsPage
+    MenuTabsPage,
+    MenuSidePage
   ],
   providers: [
     StatusBar,
