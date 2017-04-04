@@ -1,12 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MenuSidePage } from '../pages/menu-side/menu-side';
-import { HomePage } from '../pages/home/home';
-import { GasStationsListPage } from '../pages/gas-stations-list/gas-stations-list';
-import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { LoginPage } from '../pages/login/login';
+import { UserData } from '../providers/user-data';
 
 
 @Component({
@@ -15,20 +14,25 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
 export class MyApp {
 
   rootPage: any;
-  
-  pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private userData: UserData,
   ) {
     platform
       .ready()
       .then(() => {
+        //First - check if user is logged
+        if(this.userData.currentUser) { 
+          this.rootPage = MenuSidePage;
+        } else {
+          this.rootPage = LoginPage;
+        }
         statusBar.styleDefault();
         splashScreen.hide();
-        this.rootPage = MenuSidePage;
+        
     });
   }
 }
