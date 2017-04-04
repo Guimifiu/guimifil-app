@@ -1,14 +1,18 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { GasStationsListPage } from '../pages/gas-stations-list/gas-stations-list';
 import { HomePage } from '../pages/home/home';
 import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
 import { MenuSidePage } from '../pages/menu-side/menu-side';
+import { LoginPage } from '../pages/login/login';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { UserData } from '../providers/user-data';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     GasStationsListPage,
     HomePage,
     MenuTabsPage,
-    MenuSidePage
+    MenuSidePage,
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,11 +34,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     GasStationsListPage,
     HomePage,
     MenuTabsPage,
-    MenuSidePage
+    MenuSidePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
+    UserData,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
