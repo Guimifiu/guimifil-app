@@ -10,13 +10,14 @@ export class FacebookService {
   permissions = ['public_profile', 'email'];
   fbRequestPath = '/me?fields=first_name,last_name,email';
   
-  constructor() {
-  }
+  constructor(
+    private facebook: Facebook
+  ) {}
 
   login(): Promise<User> {
     return new Promise((resolve, reject) => {
       let user = new User;
-      Facebook
+      this.facebook
       .login(this.permissions)
       .then(fbReponse => {
         user.uid = fbReponse.authResponse.userID;
@@ -43,7 +44,7 @@ export class FacebookService {
 
   fetchUserData(): Promise<any> {
     return new Promise((resolve, reject) => {
-      Facebook
+      this.facebook
       .api(this.fbRequestPath, null)
       .then(userProfileData => {
         resolve(userProfileData);
@@ -55,7 +56,7 @@ export class FacebookService {
   getUserPicture(userId) {
     return new Promise((resolve,reject) => {
       let picturePath = '/me/?fields=picture.type(large)&redirect=false'
-      Facebook
+      this.facebook
       .api(picturePath, null)
       .then(response => {
         resolve(response.picture.data.url);
@@ -65,7 +66,7 @@ export class FacebookService {
   }
 
   logout() {
-    Facebook.logout()
+    this.facebook.logout()
     .then(() => console.log('successfully logout from facebook'))
     .catch(() => console.log('error facebook logout'));
   }

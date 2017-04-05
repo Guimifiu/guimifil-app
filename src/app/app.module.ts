@@ -13,6 +13,13 @@ import { MenuSidePage } from '../pages/menu-side/menu-side';
 import { LoginPage } from '../pages/login/login';
 
 import { UserData } from '../providers/user-data';
+import { AuthenticationService } from '../providers/authentication-service';
+import { UserService } from '../providers/user-service';
+import { FacebookService } from '../providers/facebook-service';
+import { GoogleService } from '../providers/google-service';
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +49,12 @@ import { UserData } from '../providers/user-data';
     SplashScreen,
     NativeStorage,
     UserData,
+    AuthenticationService,
+    UserService,
+    FacebookService,
+    GoogleService,
+    Facebook,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

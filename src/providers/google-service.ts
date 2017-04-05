@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GooglePlus } from 'ionic-native';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 import { ENV } from '../config/environment-development';
 import { User } from '../models/user';
@@ -13,13 +13,14 @@ export class GoogleService {
     'offline': false
   }
 
-  constructor() {
-  }
+  constructor(
+    private googlePlus: GooglePlus
+  ) {}
 
   login(): Promise<User> {
     return new Promise((resolve, reject) => {
       let user = new User;
-      GooglePlus
+      this.googlePlus
       .login(this.permissions)
       .then(userData => {
         user.id = userData.userId;
@@ -39,7 +40,7 @@ export class GoogleService {
   }
 
   logout() {
-    GooglePlus.logout()
+    this.googlePlus.logout()
     .then(() => console.log('successfully logout from facebook'))
     .catch(error => console.log('error google logout ' + error.message));
   }
