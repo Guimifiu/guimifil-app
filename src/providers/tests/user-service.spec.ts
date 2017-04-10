@@ -8,35 +8,41 @@ import { ENV } from '../../config/environment-development';
 import { API } from '../../config/guimifiu-api';
 import { User } from '../../models/user';
 
-let userService : UserService;
-let user : User;
+var userService : UserService;
+var user : User;
 
 describe('User Service', () => {
- 
+
     beforeEach(() => {
-        userService = new UserService();
-        user = new User(1,"Godinho","Matheus","godinho@matheus.com");
+        user = new User();
     });
 
     afterEach(() =>{
-        userService = null;
         user = null;
     });
 
     it('returns the correct user', () => {
- 
-        let userTest = userService.getUser("godinho@matheus.com");
-        expect(userTest.name).toBe(user.Name);
- 
+        user.name = 'apptest';
+        user.email = 'test@apptest.com';
+        var userTest = new User();
+        userService.getUser('test@apptest.com')
+        .then(user => {
+            userTest = user;
+            console.log(JSON.stringify(userTest));
+        })
+        expect(userTest.name).toBe(user.name);
+
     });
 
     it('creates a new user', () => {
- 
-        let newUser = new User(2, "Test", "Test", "test@test.com");
-        userService.create(newUser);
-        let userTest = userService.getUser("test@test.com");
-        expect(userTest.name).toBe(newUser.Name);
- 
+        user.name = 'newapptest';
+        user.email = 'newtest@apptest.com';
+        userService.create(user)
+        .then(response => {
+            var userTest = new User();
+            userService.getUser("newtest@apptest.com");
+            expect(userTest.name).toBe(user.name); 
+        })
     });
- 
+
 });
