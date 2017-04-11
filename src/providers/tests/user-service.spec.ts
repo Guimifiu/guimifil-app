@@ -4,16 +4,17 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { ENV } from '../../config/environment-development';
+import { ENV } from '../../config/environment-example';
 import { API } from '../../config/guimifiu-api';
 import { User } from '../../models/user';
 
-var userService : UserService;
-var user : User;
+let userService : UserService;
+let user : User;
 
 describe('User Service', () => {
 
     beforeEach(() => {
+        userService = new UserService();
         user = new User();
     });
 
@@ -26,7 +27,7 @@ describe('User Service', () => {
         user.email = 'test@apptest.com';
         var userTest = new User();
         userService.getUser('test@apptest.com')
-        .then(user => {
+        .then(data => {
             userTest = user;
             console.log(JSON.stringify(userTest));
         })
