@@ -14,7 +14,6 @@ let user : User;
 describe('User Service', () => {
 
     beforeEach(() => {
-        userService = new UserService();
         user = new User();
     });
 
