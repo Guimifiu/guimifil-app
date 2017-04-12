@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthenticationService } from '../../providers/authentication-service';
+import { MenuSidePage } from '../menu-side/menu-side';
 import { MenuTabsPage } from '../menu-tabs/menu-tabs';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'page-login',
@@ -18,12 +20,18 @@ export class LoginPage {
   }
 
   facebookLogin() {
-    // TODO
-    // install cordova facebook plugin
-    // create app on facebook
-    // put facebook varibales on config/environment-... file
-    // call authenticationServiceentication-service with facebook login method
-    console.log('login with facebook');
+    this.authenticationService
+      .facebookLogin()
+      .then(() => {
+        this.goToUserRootMenuPage();
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error));
+         if (error instanceof User) {
+          //register user
+          //authenticationService.register(error)
+        }
+      });
   }
 
   googleLogin() { 
@@ -75,6 +83,10 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present(prompt);
+  }
+
+  goToUserRootMenuPage() {
+    this.navCtrl.setRoot(MenuSidePage);
   }
 
 }

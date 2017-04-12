@@ -35,14 +35,11 @@
       <ion-row>
         <ion-col class="signup-col">
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Entrar</button>
-          <button ion-button class="register-btn" block clear (click)="createAccount()">Criar Nova Conta</button>
-
-          <button ion-button class="submit-btn" (click)='facebookLogin();'> Facebook </button>
-          <button ion-button class="submit-btn" (click)='googleLogin();'> Google </button>
-
         </ion-col>
       </ion-row>
-      
     </form>
+    <button ion-button class="register-btn" block clear (click)="register()">Criar Nova Conta</button>
+    <button ion-button class="submit-btn" (click)='facebookLogin();'> Facebook </button>
+    <button ion-button class="submit-btn" (click)='googleLogin();'> Google </button>
   </div>
 </ion-content>

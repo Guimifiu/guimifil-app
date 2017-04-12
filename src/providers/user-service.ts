@@ -54,7 +54,9 @@ export class UserService {
 
   getUser(email: string): Promise<User> {
     return new Promise((resolve, reject) => {
-      let url = this.endpoint + '?email=' + email;
+      let url = ENV.API_URL + 'users?email=' + email;
+      console.log("URL: " + url);
+      console.log(JSON.stringify(API.options));
       this.http
         .get(url, API.options)
         .map(res => res.json())
