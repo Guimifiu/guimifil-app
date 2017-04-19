@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthenticationService } from '../../providers/authentication-service';
 import { MenuSidePage } from '../menu-side/menu-side';
 import { MenuTabsPage } from '../menu-tabs/menu-tabs';
@@ -7,13 +7,19 @@ import { User } from '../../models/user';
 
 @Component({
   selector: 'page-login',
-  templateUrl: './login.html'
+  templateUrl: 'login.html'
 })
+
 export class LoginPage {
   loading: Loading;
   registerCredentials = {email: '', password: ''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authenticationService: AuthenticationService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {}
+  constructor(
+    public navCtrl: NavController, 
+    public authenticationService: AuthenticationService, 
+    private alertCtrl: AlertController, 
+    private loadingCtrl: LoadingController
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
