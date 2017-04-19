@@ -4,6 +4,8 @@ import { NavController, MenuController, NavParams, Nav } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { UserProfilePage } from '../user-profile/user-profile';
 import { GasStationsListPage } from '../gas-stations-list/gas-stations-list';
+import { AuthenticationService } from '../../providers/authentication-service';
+import { LoginPage } from '../login/login';
 
 export interface PageInterface {
   title: string;
@@ -12,7 +14,8 @@ export interface PageInterface {
 
 @Component({
   selector: 'page-menu-side',
-  templateUrl: 'menu-side.html'
+  templateUrl: 'menu-side.html',
+  providers: [ AuthenticationService ]
 })
 export class MenuSidePage {
 
@@ -30,7 +33,7 @@ export class MenuSidePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public menu: MenuController,
-    
+    private authenticationService: AuthenticationService
   ) {}
 
   ionViewDidLoad() {
@@ -41,6 +44,11 @@ export class MenuSidePage {
   openPage(page) {
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

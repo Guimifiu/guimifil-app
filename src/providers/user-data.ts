@@ -7,7 +7,6 @@ import { User } from '../models/user';
 @Injectable()
 export class UserData {
 
-  private HAS_LOGGED_IN = 'userHasLoggedIn';
   private USER = 'userKey';
   currentUser: User;
 
@@ -20,15 +19,21 @@ export class UserData {
 
   login(user) {
     this.currentUser = user;
-    this.nativeStorage.setItem(this.HAS_LOGGED_IN, true);
     this.events.publish('user:login');
     return this.nativeStorage.setItem(this.USER, user);
   }
 
   logout() {
-    this.nativeStorage.remove(this.HAS_LOGGED_IN);
     this.nativeStorage.remove(this.USER);
     this.events.publish('user:logout');
+  }
+
+  getCurrentUser(): Promise<User> {
+    return this.nativeStorage.getItem(this.USER)
+      .then(user => {
+        return user as User
+      })
+      .catch(error => error);
   }
 
 }
