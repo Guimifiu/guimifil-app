@@ -7,7 +7,7 @@ import { User } from '../../models/user';
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: './login.html'
 })
 export class LoginPage {
   loading: Loading;
@@ -35,12 +35,18 @@ export class LoginPage {
   }
 
   googleLogin() { 
-    // TODO
-    // install cordova google plugin
-    // create settings on google
-    // put google varibales on config/environment-... file
-    // call authentication-service with google login method
-    console.log('login with google');
+    this.authenticationService
+      .googleLogin()
+      .then(() => {
+        this.goToUserRootMenuPage();
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error));
+         if (error instanceof User) {
+          //register user
+          //authenticationService.register(error)
+        }
+      });
   }
 
   nativeLogin() {
@@ -49,7 +55,7 @@ export class LoginPage {
       if (allowed) {
         setTimeout(() => {
         this.loading.dismiss();
-        this.navCtrl.setRoot(MenuTabsPage)
+        this.goToUserRootMenuPage();
         });
       } else {
         this.showError("Acesso Negado.");
