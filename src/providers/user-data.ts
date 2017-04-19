@@ -29,11 +29,13 @@ export class UserData {
   }
 
   getCurrentUser(): Promise<User> {
-    return this.nativeStorage.getItem(this.USER)
-      .then(user => {
-        return user as User
-      })
-      .catch(error => error);
+    return new Promise((resolve, reject) => {
+      this.nativeStorage.getItem(this.USER)
+        .then(user => {
+          resolve(user as User)
+        })
+        .catch(error => reject(error));
+    });
   }
 
 }
