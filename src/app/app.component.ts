@@ -23,15 +23,19 @@ export class MyApp {
     platform
       .ready()
       .then(() => {
-        //First - check if user is logged
-        if(this.userData.currentUser) { 
+        
+        this.userData.getCurrentUser()
+        .then(user => {
+          this.userData.login(user);
           this.rootPage = MenuSidePage;
-        } else {
+        })
+        .catch(error => {
           this.rootPage = LoginPage;
-        }
+        })
+
         statusBar.styleDefault();
         splashScreen.hide();
-        
     });
   }
 }
+

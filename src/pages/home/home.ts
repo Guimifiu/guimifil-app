@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
+
+import { User } from '../../models/user';
+import { UserData } from '../../providers/user-data'
 
 @Component({
   selector: 'page-home',
@@ -8,8 +10,15 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  currentUser = new User();
 
+  constructor(
+    public navCtrl: NavController,
+    private userData: UserData,
+  ) {}
+
+  ngOnInit() {
+    this.currentUser = this.userData.currentUser;
   }
 
 }
