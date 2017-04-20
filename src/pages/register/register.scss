@@ -1,5 +1,4 @@
-page-login {
-
+page-register {
   .login-content {
 
     .logo-row {
@@ -31,7 +30,7 @@ page-login {
        margin: 0px 16px 0px 16px;
        padding-bottom: 20px;
      }
- 
+
      .item-inner {
        border-bottom-color: #ffffff !important;
        box-shadow: none !important;
@@ -41,10 +40,5 @@ page-login {
        border-radius: 30px !important;
        border: 1px solid #ffffff;
      }
-
-     .register-btn {
-       font-size: 0.8em;
-     }
   }
-
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthenticationService } from '../../providers/authentication-service';
+import { RegisterPage } from '../register/register';
 import { MenuSidePage } from '../menu-side/menu-side';
 import { MenuTabsPage } from '../menu-tabs/menu-tabs';
 import { User } from '../../models/user';
@@ -15,9 +16,9 @@ export class LoginPage {
   registerCredentials = {email: '', password: ''};
 
   constructor(
-    public navCtrl: NavController, 
-    public authenticationService: AuthenticationService, 
-    private alertCtrl: AlertController, 
+    public navCtrl: NavController,
+    public authenticationService: AuthenticationService,
+    private alertCtrl: AlertController,
     private loadingCtrl: LoadingController
   ) {}
 
@@ -40,7 +41,7 @@ export class LoginPage {
       });
   }
 
-  googleLogin() { 
+  googleLogin() {
     this.authenticationService
       .googleLogin()
       .then(() => {
@@ -73,8 +74,7 @@ export class LoginPage {
   }
 
   register() {
-    // call authentication-service with register method
-    console.log('register');
+    this.navCtrl.push(RegisterPage);
   }
 
     showLoading() {
@@ -83,12 +83,12 @@ export class LoginPage {
     });
     this.loading.present();
   }
- 
+
   showError(text) {
     setTimeout(() => {
       this.loading.dismiss();
     });
- 
+
     let alert = this.alertCtrl.create({
       title: 'Falhou',
       subTitle: text,

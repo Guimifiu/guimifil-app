@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
 import { MenuSidePage } from '../pages/menu-side/menu-side';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register'
 
 import { UserData } from '../providers/user-data';
 import { AuthenticationService } from '../providers/authentication-service';
@@ -29,7 +30,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     HomePage,
     MenuTabsPage,
     MenuSidePage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -42,7 +44,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     HomePage,
     MenuTabsPage,
     MenuSidePage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
