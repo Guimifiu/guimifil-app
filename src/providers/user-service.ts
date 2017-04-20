@@ -10,14 +10,14 @@ import { User } from '../models/user';
 export class UserService {
 
   endpoint = ENV.API_URL + 'users/';
-  
+
   constructor(public http: Http) {
     console.log('Hello UserService Provider');
   }
 
   create(user: User): Promise<User> {
     return new Promise((resolve, reject) => {
-      let url = this.endpoint + user.id
+      let url = this.endpoint + 'create'
       let body = { 'user': user }
       console.log('url:' + url);
       console.log('body:' + JSON.stringify(body));
