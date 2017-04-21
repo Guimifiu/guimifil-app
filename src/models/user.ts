@@ -5,6 +5,7 @@ export class User {
   surname: string;
   email: string;
   password: string;
+  password_confirmation: string;
   provider: string;
   uid: string;
   oauth_token: string;
