@@ -16,17 +16,22 @@ export class RegisterPage {
               private alertCtrl: AlertController) {}
 
   public register() {
-    this.authenticationService.register(this.user).then(success => {
-      if (success) {
-        this.createSuccess = true;
-          this.showPopup("Sucesso", "Conta criada.");
-      } else {
-        this.showPopup("Erro", "Problema ao criar conta.");
-      }
-    },
-    error => {
-      this.showPopup("Erro", error);
-    });
+    if(this.user.password == this.user.password_confirmation){
+      this.authenticationService.register(this.user).then(success => {
+        if (success) {
+          this.createSuccess = true;
+            this.showPopup("Sucesso", "Conta criada.");
+        } else {
+          this.showPopup("Erro", "Problema ao criar conta.");
+        }
+      },
+      error => {
+        this.showPopup("Erro", error);
+      });
+    }
+    else{
+      this.showPopup("Erro", "As senhas inseridas não são iguas" );
+    }
   }
 
   showPopup(title, text) {
