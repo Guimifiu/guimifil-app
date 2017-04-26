@@ -1,6 +1,7 @@
 #!/bin/bash
-cd platforms/ios
-fastlane beta
-cd ../android
-fastlane beta
-
+if [ "$TRAVIS_BRANCH" == "staging" ]; then
+  cd platforms/ios
+  fastlane beta
+  cd ../android
+  fastlane beta
+fi

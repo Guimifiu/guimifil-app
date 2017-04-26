@@ -8,7 +8,8 @@
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "test-coverage": "ng test --code-coverage",
+    "test-coverage": "ng test --code-coverage --single-run",
+    "codecov": "codecov -t f23228f0-dbf1-4d09-858d-0230a2911bd0",
     "test": "ng test",
     "env:ios": "./scripts/convert-environment-ios.sh",
     "env:linux": "./scripts/convert-environment-linux.sh"
