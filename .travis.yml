@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 
 language: node_js
 node_js:
@@ -20,6 +20,7 @@ install:
   - npm install -g gulp bower cordova ionic
   - npm install
   - bower update
+  - gem update fastlane --no-ri --no-rdoc --no-document
 
 before_script:
   - export DISPLAY=:99.0
@@ -40,4 +41,5 @@ script:
   - npm run test-coverage
 
 after_success:
+  - npm run codecov
   - scripts/deploy-beta.sh
