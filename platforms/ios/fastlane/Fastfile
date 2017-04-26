@@ -1,0 +1,33 @@
+fastlane_version "2.28.2"
+
+default_platform :ios
+
+platform :ios do
+  #
+  # Learn more here: https://github.com/fastlane/setups/blob/master/samples-ios/distribute-beta-build.md 🚀
+  #
+  lane :beta do |values|
+    # Fabric generated this lane for deployment to Crashlytics Beta
+    # set 'export_method' to 'ad-hoc' if your Crashlytics Beta distribution uses ad-hoc provisioning
+    gym(scheme: 'guimifiu-app', export_method: 'development')
+
+    emails = values[:test_email] ? values[:test_email] : ['guimifiu@gmail.com', 'marcowilliamdf@gmail.com'] # You can list more emails here
+    groups = values[:test_email] ? nil : nil # You can define groups on the web and reference them here
+
+    crashlytics(api_token: 'ff899a67a5fac8093310613f971d0bdd14bbcbec',
+             build_secret: '424d952410c37afe9c4aed7af3545df969a8cc3bb66ad85965aae1a524c5555a',
+                   emails: emails,
+                   groups: groups,
+                    notes: 'Distributed with fastlane', # Check out the changelog_from_git_commits action
+            notifications: true) # Should this distribution notify your testers via email?
+
+    # for all available options run `fastlane action crashlytics`
+
+    # You can notify your team in chat that a beta build has been uploaded
+    slack(
+      slack_url: "https://hooks.slack.com/services/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",
+      channel: "ferramentas",
+      message: "Successfully uploaded a beta release - see it at https://fabric.io/_/beta"
+    )
+  end
+end
