@@ -58,19 +58,21 @@ export class LoginPage {
 
   nativeLogin() {
     this.showLoading()
-    this.authenticationService.nativeLogin(this.registerCredentials).then(allowed => {
-      if (allowed) {
-        setTimeout(() => {
-        this.loading.dismiss();
-        this.goToUserRootMenuPage();
-        });
-      } else {
+    this.authenticationService
+      .nativeLogin(this.registerCredentials)
+      .then(allowed => {
+        if (allowed) {
+          setTimeout(() => {
+          this.loading.dismiss();
+          this.goToUserRootMenuPage();
+          });
+        } else {
         this.showError("Acesso Negado.");
-      }
-    },
-    error => {
-      this.showError(error);
-    });
+        }
+      },
+      error => {
+        this.showError(error);
+      });
   }
 
   register() {
