@@ -10,7 +10,8 @@
     "ionic:serve": "ionic-app-scripts serve",
     "test-coverage": "ng test --code-coverage",
     "test": "ng test",
-    "env": "./scripts/convert-environment.sh"
+    "env:ios": "./scripts/convert-environment-ios.sh",
+    "env:linux": "./scripts/convert-environment-linux.sh"
   },
   "dependencies": {
     "@angular/common": "2.4.8",

@@ -86,7 +86,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		feFRgSRcybHQohcp/ltzk3yEkuE=
+		YUMEUk7Uqepk/sQWTiNObVdXxBE=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		kewp2tZL87LaI5oGwTymNt9uRMc=
+		wy/c9YH3DyV0WbOF0wXuPyZU9ag=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -158,7 +158,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		ixI+DF/u8/Z9y7g1h6Hs6cg7+e0=
+		IwzCYJyWAl1Of6hbnNSIMuk32fc=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -599,11 +599,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			feFRgSRcybHQohcp/ltzk3yEkuE=
+			YUMEUk7Uqepk/sQWTiNObVdXxBE=
 			</data>
 			<key>hash2</key>
 			<data>
-			sDm0/JpCEzlHTXwaWvU0qfrETBsnV1HeIbn4ILRwAd0=
+			xrpymwIl1K8VCEPUZuQYWIX7B7N3hr6HvMn0BCQPOl8=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -621,11 +621,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			kewp2tZL87LaI5oGwTymNt9uRMc=
+			wy/c9YH3DyV0WbOF0wXuPyZU9ag=
 			</data>
 			<key>hash2</key>
 			<data>
-			dx1cVVBJWMzFweiv4juVNKqGiQ24S2LnhYONHKecrDU=
+			KSv5hvAWLyjMNsqwtaK/V/zP1nof25+ogaFp8c+mHxA=
 			</data>
 		</dict>
 		<key>LaunchImage-568h@2x.png</key>
@@ -786,11 +786,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ixI+DF/u8/Z9y7g1h6Hs6cg7+e0=
+			IwzCYJyWAl1Of6hbnNSIMuk32fc=
 			</data>
 			<key>hash2</key>
 			<data>
-			TOQsgk2RW7FCB34O9HGxftQr5D1J61ccSwfvqWcbDXE=
+			k8ZijQUsHgru0AghpD2Fg0YaHa6sIZ873rlRR8nfNgU=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
