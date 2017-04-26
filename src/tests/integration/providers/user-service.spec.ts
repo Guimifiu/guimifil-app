@@ -19,15 +19,6 @@ describe('Integration test: Providers: UserService', () => {
      userService = getTestBed().get(UserService);
   })
 
-  beforeEach(() => {
-     let user = new User();
-     user.name = 'App'
-     user.surname = 'Test'
-     user.email = 'apptest@apptest.com';
-     user.password = '12345678'
-     userService.create(user);
-  })
-
   describe('getUser()', () => {
     it('should get User', async(() => {
       let user = new User();
