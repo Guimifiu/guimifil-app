@@ -27,7 +27,7 @@ export class UserService {
         .subscribe(
           data => resolve(data),
           error => reject(error),
-          () => console.log("Favorite lavor added to user")
+          () => console.log("User created")
         );
     });
   }
