@@ -9,7 +9,6 @@ export class User {
   provider: string;
   uid: string;
   oauth_token: string;
-  oauth_expires_at:any;
   photo:any;
 
   constructor() {
