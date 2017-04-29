@@ -22,6 +22,7 @@ export class RegisterPage {
 
   public register() {
     if(this.user.password == this.user.password_confirmation){
+      this.user.provider = 'email';
       this.authenticationService
         .register(this.user)
         .then(success => {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+
 import { AuthenticationService } from '../../providers/authentication-service';
 import { RegisterPage } from '../register/register';
 import { MenuSidePage } from '../menu-side/menu-side';
@@ -33,11 +34,7 @@ export class LoginPage {
         this.goToUserRootMenuPage();
       })
       .catch(error => {
-        console.log(JSON.stringify(error));
-         if (error instanceof User) {
-          //register user
-          //authenticationService.register(error)
-        }
+        this.registerSocialMediaUser(error)
       });
   }
 
@@ -48,11 +45,7 @@ export class LoginPage {
         this.goToUserRootMenuPage();
       })
       .catch(error => {
-        console.log(JSON.stringify(error));
-         if (error instanceof User) {
-          //register user
-          //authenticationService.register(error)
-        }
+        this.registerSocialMediaUser(error)
       });
   }
 
@@ -73,6 +66,18 @@ export class LoginPage {
       error => {
         this.showError(error);
       });
+  }
+
+  registerSocialMediaUser(error) {
+    console.log(JSON.stringify(error));
+        if (error instanceof User) {
+          this.authenticationService
+            .register(error)
+            .then(user => {
+              this.goToUserRootMenuPage();
+            })
+            .catch(error => console.log(JSON.stringify(error)));
+        } 
   }
 
   register() {

@@ -22,7 +22,6 @@ export class FacebookService {
       .then(fbReponse => {
         user.uid = fbReponse.authResponse.userID;
         user.oauth_token = fbReponse.authResponse.accessToken;
-        user.oauth_expires_at = fbReponse.authResponse.expiresIn;
         return this.fetchUserData()
       })
       .then((profile_data: any) => {
@@ -35,7 +34,7 @@ export class FacebookService {
         user.photo = {
           url: photo,
         };
-        user.provider = 'Facebook';
+        user.provider = 'facebook';
         resolve(user);
       })
       .catch(error => reject(error));

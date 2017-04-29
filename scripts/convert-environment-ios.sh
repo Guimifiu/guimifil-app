@@ -5,7 +5,7 @@ then
     exit
 else
     case "$1" in
-        prodction)
+        production)
             echo "Converting app to production mode"
             echo "Do not forget to convert it back to developemnt mode before commiting"
             find . -type f -name '*.ts' -exec sed -i "" "s|environment-development|environment-production|" {} +
