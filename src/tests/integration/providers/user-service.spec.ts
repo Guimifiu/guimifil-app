@@ -5,6 +5,7 @@ import { User } from '../../../models/user';
 import { UserService } from '../../../providers/user-service';
 
 let userService: UserService;
+let user : User;
 
 describe('Integration test: Providers: UserService', () => {
   beforeEach(async(() => {
@@ -16,7 +17,15 @@ describe('Integration test: Providers: UserService', () => {
   }));
 
   beforeEach(() => {
-     userService = getTestBed().get(UserService);
+    user = new User();
+    user.email = 'apptest@apptest.com';
+    user.password = '12345678';
+    userService = getTestBed().get(UserService);
+    userService.create(user);
+  })
+
+  afterEach(() => {
+    userService.delete(user);
   })
 
   describe('getUser()', () => {
@@ -33,9 +42,6 @@ describe('Integration test: Providers: UserService', () => {
 
   describe('authenticate()', () => {
     it('should authenticate an user', async(() => {
-      let user = new User();
-      user.email = 'apptest@apptest.com';
-      user.password = '12345678'
       userService.authenticate(user)
       .then(response => {
         user = response as User;
@@ -45,20 +51,20 @@ describe('Integration test: Providers: UserService', () => {
     }));
 
     it('should return "Email ou senha inválidos"', async(() => {
-      let user = new User();
-      user.email = 'apptestfake@apptestfake.com';
-      user.password = '12345678'
-      userService.authenticate(user)
+      let fakeUser = new User();
+      fakeUser.email = 'apptestfake@apptestfake.com';
+      fakeUser.password = '12345678'
+      userService.authenticate(fakeUser)
       .then(response => {
       })
       .catch(error => expect(error).toBe("Email ou senha inválidos"));
     }));
 
     it('should return "Email ou senha inválidos"', async(() => {
-      let user = new User();
-      user.email = 'apptest@apptest.com';
-      user.password = 'fake'
-      userService.authenticate(user)
+      let fakeUser = new User();
+      fakeUser.email = 'apptest@apptest.com';
+      fakeUser.password = 'fake'
+      userService.authenticate(fakeUser)
       .then(response => {
       })
       .catch(error => expect(error).toBe("Email ou senha inválidos"));

@@ -32,7 +32,21 @@ export class UserService {
     });
   }
 
-    authenticate(user) {
+  delete(user: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = this.endpoint + 'delete'
+      let body = { 'user': user }
+      this.http
+        .post(url, body, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data),
+          error => reject(error),
+          () => console.log("User deleted")
+        );
+    });
+  }
+  authenticate(user) {
     return new Promise((resolve, reject) => {
       let url = this.endpoint + 'sign_in'
       let body = { 'user': user }
