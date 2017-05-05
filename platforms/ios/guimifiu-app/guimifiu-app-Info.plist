@@ -126,6 +126,11 @@
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
           <true/>
         </dict>
+        <key>172.31.200.151</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
         <key>m.facebook.com</key>
         <dict/>
         <key>graph.facebook.com</key>

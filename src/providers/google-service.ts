@@ -23,13 +23,11 @@ export class GoogleService {
       this.googlePlus
       .login(this.permissions)
       .then(userData => {
-        console.log(JSON.stringify(userData));
         user.uid = userData.userId;
         user.oauth_token = userData.accessToken;
         let userFullName = userData.displayName
         user.name = userFullName.split(" ")[0];
-        user.surname = userFullName.split(" ").slice(1, -1).join(' ');
-        console.log("SURNAME: " + user.surname)
+        user.surname = userFullName.split(" ").slice(1).join(' ');
         user.email = userData.email;
         user.photo = {
           url: userData.imageUrl,
