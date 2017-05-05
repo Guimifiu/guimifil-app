@@ -34,15 +34,11 @@ export class AuthenticationService {
 
   nativeLogin(user) {
     return new Promise((resolve, reject) => {
-      if (user.email == '' || user.password == '') {
-        reject("Por favor insira email e senha");
-      } else {
-        this.userService.authenticate(user)
-        .then((user) => {
-          this.userData.login(user)
-          resolve(user);
-        }, error => reject(error));
-      }
+      this.userService.authenticate(user)
+      .then((user) => {
+        this.userData.login(user)
+        resolve(user);
+      }, error => reject(error));
    });
  }
 

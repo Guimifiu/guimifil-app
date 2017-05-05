@@ -15,26 +15,21 @@
     <ion-col></ion-col>
   </ion-row>
   <div class="login-box">
-    <form (ngSubmit)="nativeLogin()" #registerForm="ngForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit();">
       <ion-row>
         <ion-col>
-          <ion-list inset>
+              <ion-input formControlName="email" type="email" placeholder="Email" [class.invalid]="isNotEmpty(formErrors.email)"></ion-input>
+            <div class="form__warning" *ngIf="isNotEmpty(formErrors.email)">{{formErrors.email[0]}}</div>
             
-            <ion-item>
-              <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
-            </ion-item>
+              <ion-input formControlName="password" type="password" placeholder="Password" [class.invalid]="isNotEmpty(formErrors.password)"></ion-input>
+            <div class="form__warning" *ngIf="isNotEmpty(formErrors.password)">{{formErrors.password[0]}}</div>
             
-            <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
-            </ion-item>
-            
-          </ion-list>
         </ion-col>
       </ion-row>
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Entrar</button>
+          <button ion-button class="submit-btn" full type="submit">Entrar</button>
         </ion-col>
       </ion-row>
     </form>
