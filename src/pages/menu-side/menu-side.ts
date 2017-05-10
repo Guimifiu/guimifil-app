@@ -32,7 +32,6 @@ export class MenuSidePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public menu: MenuController,
     private authenticationService: AuthenticationService
   ) {}
 

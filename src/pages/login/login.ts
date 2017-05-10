@@ -6,7 +6,6 @@ import { Form } from '../../helpers/form';
 import { FormErrorMessages } from '../../validators/form-error-messages';
 import { AuthenticationService } from '../../providers/authentication-service';
 import { RegisterPage } from '../register/register';
-import { MenuSidePage } from '../menu-side/menu-side';
 import { MenuTabsPage } from '../menu-tabs/menu-tabs';
 import { User } from '../../models/user';
 import { ToastService } from '../../providers/toast-service';
@@ -64,6 +63,7 @@ export class LoginPage extends Form{
   }
 
   facebookLogin() {
+    this.loadingService.showLoading('Entrando...');
     this.authenticationService
       .facebookLogin()
       .then(() => {
@@ -71,10 +71,12 @@ export class LoginPage extends Form{
       })
       .catch(error => {
         this.registerSocialMediaUser(error)
-      });
+      })
+      .then(() => this.loadingService.dismissLoading());
   }
 
   googleLogin() {
+    this.loadingService.showLoading('Entrando...');
     this.authenticationService
       .googleLogin()
       .then(() => {
@@ -82,7 +84,8 @@ export class LoginPage extends Form{
       })
       .catch(error => {
         this.registerSocialMediaUser(error)
-      });
+      })
+      .then(() => this.loadingService.dismissLoading());
   }
 
   onSubmit() {
@@ -103,9 +106,11 @@ export class LoginPage extends Form{
         setTimeout(() => {
         this.goToUserRootMenuPage();
         });
-      }).catch(error => {
+      })
+      .catch(error => {
         this.toastService.presentToast(error, 'warning');
-      }).then(() => this.loadingService.dismissLoading());
+      })
+      .then(() => this.loadingService.dismissLoading());
   }
 
   registerSocialMediaUser(error) {
@@ -116,6 +121,7 @@ export class LoginPage extends Form{
               this.goToUserRootMenuPage();
             })
             .catch(error => console.log(JSON.stringify(error)));
+            
         } 
   }
 
@@ -124,7 +130,7 @@ export class LoginPage extends Form{
   }
 
   goToUserRootMenuPage() {
-    this.navCtrl.setRoot(MenuSidePage);
+    this.navCtrl.setRoot(MenuTabsPage);
   }
 
 }

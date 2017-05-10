@@ -12,6 +12,7 @@ import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
 import { MenuSidePage } from '../pages/menu-side/menu-side';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register'
+import { MainMenuPage } from '../pages/main-menu/main-menu';
 
 import { UserData } from '../providers/user-data';
 import { AuthenticationService } from '../providers/authentication-service';
@@ -31,7 +32,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     MenuTabsPage,
     MenuSidePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    MainMenuPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -45,7 +47,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     MenuTabsPage,
     MenuSidePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    MainMenuPage
   ],
   providers: [
     StatusBar,

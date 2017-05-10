@@ -53,7 +53,7 @@
     <name>guimifiu-app</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.254.2:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://10.10.1.101:8100" />
@@ -66,6 +66,7 @@
     <allow-navigation href="http://172.31.192.229:8100" />
     <allow-navigation href="http://172.20.10.3:8100" />
     <allow-navigation href="http://172.31.200.151:8100" />
+    <allow-navigation href="http://192.168.254.2:8100" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
