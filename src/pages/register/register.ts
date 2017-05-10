@@ -6,7 +6,7 @@ import { Form } from '../../helpers/form';
 import { FormErrorMessages } from '../../validators/form-error-messages';
 import { AuthenticationService } from '../../providers/authentication-service';
 import { User } from '../../models/user';
-import { MenuSidePage } from '../menu-side/menu-side';
+import { MenuTabsPage } from '../menu-tabs/menu-tabs';
 import { ToastService } from '../../providers/toast-service';
 import { LoadingService } from '../../providers/loading-service';
 
@@ -128,7 +128,7 @@ export class RegisterPage extends Form{
          text: 'OK',
          handler: data => {
            if (this.createSuccess) {
-             this.navCtrl.setRoot(MenuSidePage);
+             this.navCtrl.setRoot(MenuTabsPage);
            }
          }
        }

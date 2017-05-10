@@ -3,12 +3,10 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MenuSidePage } from '../pages/menu-side/menu-side';
+import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
 import { LoginPage } from '../pages/login/login';
 import { UserData } from '../providers/user-data';
 import { User } from '../models/user';
-
-
 
 @Component({
   template: `<ion-nav #nav [root]="rootPage"></ion-nav>`
@@ -30,7 +28,7 @@ export class MyApp {
         this.userData.getCurrentUser()
         .then(user => {
           this.userData.login(user);
-          this.rootPage = MenuSidePage;
+          this.rootPage = MenuTabsPage;
         })
         .catch(() => {
           this.rootPage = LoginPage;
