@@ -17,6 +17,7 @@
   <allow-navigation href="http://172.20.10.3:8100"/>
   <allow-navigation href="http://172.31.200.151:8100"/>
   <allow-navigation href="http://192.168.254.2:8100"/>
+  <allow-navigation href="http://192.168.43.197:8100"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
@@ -54,5 +55,11 @@
   </plugin>
   <plugin name="cordova-plugin-googleplus" spec="~5.1.1">
     <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.167308252367-r96b3ql35kgbvao01tj7em1easa49d6i"/>
+  </plugin>
+  <plugin name="cordova-plugin-googlemaps" spec="~1.4.0">
+    <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAbWY91j7dLr4PRGftmq72c748xLLgOncY"/>
+    <variable name="API_KEY_FOR_IOS" value="AIzaSyB34OsMkED-pMgbNHIUjuzkbayY3O68SIg"/>
+    <variable name="NSLOCATIONWHENINUSEUSAGEDESCRIPTION" value="Show your location on the map"/>
+    <variable name="NSLOCATIONALWAYSUSAGEDESCRIPTION" value="Trace your location on the map"/>
   </plugin>
 </widget>

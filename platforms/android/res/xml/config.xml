@@ -12,6 +12,17 @@
     <access origin="https://api.facebook.com" />
     <access origin="https://*.fbcdn.net" />
     <access origin="https://*.akamaihd.net" />
+    <feature name="GoogleMaps">
+        <param name="android-package" value="plugin.google.maps.GoogleMaps" />
+        <param name="onload" value="true" />
+        <param name="onreset" value="true" />
+    </feature>
+    <feature name="External">
+        <param name="android-package" value="plugin.google.maps.External" />
+    </feature>
+    <feature name="Geocoder">
+        <param name="android-package" value="plugin.google.maps.MyGeocoder" />
+    </feature>
     <feature name="GooglePlus">
         <param name="android-package" value="nl.xservices.plugins.GooglePlus" />
         <param name="onload" value="true" />
@@ -49,6 +60,11 @@
     <allow-navigation href="http://192.168.254.14:8100" />
     <allow-navigation href="http://192.168.254.6:8100" />
     <allow-navigation href="http://192.168.254.1:8100" />
+    <allow-navigation href="http://172.31.192.229:8100" />
+    <allow-navigation href="http://172.20.10.3:8100" />
+    <allow-navigation href="http://172.31.200.151:8100" />
+    <allow-navigation href="http://192.168.254.2:8100" />
+    <allow-navigation href="http://192.168.43.197:8100" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

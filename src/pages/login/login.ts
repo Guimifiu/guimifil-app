@@ -23,6 +23,7 @@ export class LoginPage extends Form{
   loginForm: FormGroup;
   loading: Loading;
   registerCredentials = {email: '', password: ''};
+  tabMenuElement: any;
 
   constructor(
     public navCtrl: NavController,
@@ -35,6 +36,15 @@ export class LoginPage extends Form{
     super(toastService);
     this.buildForm();
     this.setUpForm(this.loginForm);
+    this.tabMenuElement = document.querySelector('.tabbar.show-tabbar');
+  }
+
+  ionViewWillEnter() {
+    this.tabMenuElement.style.display = 'none';
+  }
+
+  ionViewWillLeave() {
+    this.tabMenuElement.style.display = 'flex';
   }
 
   buildForm() {

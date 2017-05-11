@@ -20,6 +20,7 @@ export class RegisterPage extends Form{
   createSuccess = false;
   user = new User();
   registerForm: FormGroup;
+  tabMenuElement: any;
 
   constructor(
     private navCtrl: NavController,
@@ -32,8 +33,12 @@ export class RegisterPage extends Form{
     super(toastService);
     this.buildForm();
     this.setUpForm(this.registerForm);
+    this.tabMenuElement = document.querySelector('.tabbar.show-tabbar');
   }
 
+  ionViewWillEnter() {
+    this.tabMenuElement.style.display = 'none';
+  }
 
   buildForm() {
     var validEmail = "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@(([^<>()[\\]\\.,;:\\s@\"]+\\.)+[^<>()[\\]\\.,;:\\s@\"]{2,})$"

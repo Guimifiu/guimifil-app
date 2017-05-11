@@ -21,8 +21,6 @@ package com.guimifiu;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends CordovaActivity
 {
@@ -30,7 +28,6 @@ public class MainActivity extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
 
         // enable Cordova apps to be started in the background
         Bundle extras = getIntent().getExtras();

@@ -17,6 +17,14 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-googlemaps.cordova-plugin-googlemaps",
+        "file": "plugins/cordova-plugin-googlemaps/www/googlemaps-cdv-plugin.js",
+        "pluginId": "cordova-plugin-googlemaps",
+        "clobbers": [
+            "cordova-plugin-googlemaps"
+        ]
+    },
+    {
         "id": "cordova-plugin-googleplus.GooglePlus",
         "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
         "pluginId": "cordova-plugin-googleplus",
@@ -71,9 +79,11 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.googlemaps.ios": "2.2.0",
     "cordova-plugin-console": "1.0.5",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-facebook4": "1.7.4",
+    "cordova-plugin-googlemaps": "1.4.0",
     "cordova-plugin-googleplus": "5.1.1",
     "cordova-plugin-nativestorage": "2.2.2",
     "cordova-plugin-splashscreen": "4.0.2",
