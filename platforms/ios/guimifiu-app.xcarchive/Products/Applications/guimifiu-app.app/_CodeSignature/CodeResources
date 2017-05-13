@@ -86,7 +86,11 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		PKz96QHR/xpAp1VQRIb/vjPL6pU=
+=======
+		N0Vegi7/88tzMmyruZNf/CPK7cY=
+>>>>>>> Change travis.yml
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -94,7 +98,11 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		IqWMzjkQfht8fmVN3gdCW1EpZkQ=
+=======
+		6a6IFE3Tg+VN02ilE1/dENkce5M=
+>>>>>>> Change travis.yml
 		</data>
 		<key>GoogleMaps.bundle/GMSCacheStorage.momd/Storage.mom</key>
 		<data>
@@ -777,7 +785,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		l0E0E6Y1DkWKmvDju/Z0vjzPXT4=
+=======
+		yZPdx7but35pRzAbZZCfdNvs47Y=
+>>>>>>> Change travis.yml
 		</data>
 		<key>LaunchImage-568h@2x.png</key>
 		<data>
@@ -837,7 +849,11 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		Rf4IrY+8nK4D8RoNc7mdan2CBZ8=
+=======
+		Oy1QggGCbWxdHewzQkmnbDjuR6c=
+>>>>>>> Change travis.yml
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -849,7 +865,11 @@
 		</data>
 		<key>config.xml</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		/mPXLCF5VgrcmeZlmp3fudp+SaI=
+=======
+		n6w+XBuLsqah32VYhJZGBJ2pbPI=
+>>>>>>> Change travis.yml
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -957,7 +977,11 @@
 		</data>
 		<key>www/build/main.css</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		hliBGYLIgO4jGgVTL86btHEtsBE=
+=======
+		ZAokT7755Kz5iwSt0nyW1YSQBvI=
+>>>>>>> Change travis.yml
 		</data>
 		<key>www/build/main.css.map</key>
 		<data>
@@ -965,11 +989,19 @@
 		</data>
 		<key>www/build/main.js</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		eXghURwqLT4hmg1zLiz7/qZWWSQ=
 		</data>
 		<key>www/build/main.js.map</key>
 		<data>
 		BxW2KQaE55ou44xdUyPseTL7hMU=
+=======
+		MOmNxDe0h1Zov5MwnLW7nQJPoNA=
+		</data>
+		<key>www/build/main.js.map</key>
+		<data>
+		x7os1n4Swjc4tnIV1NWR1jfG238=
+>>>>>>> Change travis.yml
 		</data>
 		<key>www/build/polyfills.js</key>
 		<data>
@@ -993,7 +1025,11 @@
 		</data>
 		<key>www/cordova_plugins.js</key>
 		<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 		8w9e+NpdZOZ7C4MEM3G3USNLm7o=
+=======
+		otcgYITmN71Dm5PoS7WfEWnuUbE=
+>>>>>>> Change travis.yml
 		</data>
 		<key>www/index.html</key>
 		<data>
@@ -1282,11 +1318,19 @@
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			PKz96QHR/xpAp1VQRIb/vjPL6pU=
 			</data>
 			<key>hash2</key>
 			<data>
 			IDYbCqEazq9lwuHjgjI/s5/YVeip/dFTcDjMhedjkAM=
+=======
+			N0Vegi7/88tzMmyruZNf/CPK7cY=
+			</data>
+			<key>hash2</key>
+			<data>
+			ymeqIXEEPAMvtYw/ll/9oRE4T8tQxIBjlp/OIWhM+e0=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -1304,11 +1348,19 @@
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			IqWMzjkQfht8fmVN3gdCW1EpZkQ=
 			</data>
 			<key>hash2</key>
 			<data>
 			DcwJo3zOarYDQSIo/WkbLAKSx7R9NUd+UFf46c2vAC4=
+=======
+			6a6IFE3Tg+VN02ilE1/dENkce5M=
+			</data>
+			<key>hash2</key>
+			<data>
+			jRvh0jdhpBejkY2/jzBuuqUNRn+azqPgSngJRHVab34=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>GoogleMaps.bundle/GMSCacheStorage.momd/Storage.mom</key>
@@ -2831,11 +2883,19 @@
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			Rf4IrY+8nK4D8RoNc7mdan2CBZ8=
 			</data>
 			<key>hash2</key>
 			<data>
 			tRRTFSDzEAVvsqcOkDtu5bdvMZnSbQ1FAuHz5+JZr4I=
+=======
+			Oy1QggGCbWxdHewzQkmnbDjuR6c=
+			</data>
+			<key>hash2</key>
+			<data>
+			Zkk9p5IcPXCIPBzz+ZB785y2CEwj/gV7ZxTiUbKWXOw=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -2853,11 +2913,19 @@
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			/mPXLCF5VgrcmeZlmp3fudp+SaI=
 			</data>
 			<key>hash2</key>
 			<data>
 			YtQwQKsXl8imi12NKH0MihEmtLmE1wsMefzknk0Crhg=
+=======
+			n6w+XBuLsqah32VYhJZGBJ2pbPI=
+			</data>
+			<key>hash2</key>
+			<data>
+			dk0XE0OJut8aQT5d2OuVTZIx8RevVWnV10xmyL4kVC4=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
@@ -3172,22 +3240,38 @@
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			eXghURwqLT4hmg1zLiz7/qZWWSQ=
 			</data>
 			<key>hash2</key>
 			<data>
 			Rodn+xCNQDCL9/bSbDaAIVkXx8T1q6KziuA/52KzCFo=
+=======
+			MOmNxDe0h1Zov5MwnLW7nQJPoNA=
+			</data>
+			<key>hash2</key>
+			<data>
+			q/vNSivLm6g2qoTlJTceAt3e1VVFZxCSjG59JrDu8aA=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>www/build/main.js.map</key>
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			BxW2KQaE55ou44xdUyPseTL7hMU=
 			</data>
 			<key>hash2</key>
 			<data>
 			lsCGvsON+k24r2Ni2G8Yt6TMTcVPJYolmQ2/GW4eZ7E=
+=======
+			x7os1n4Swjc4tnIV1NWR1jfG238=
+			</data>
+			<key>hash2</key>
+			<data>
+			UWBPy7CLy6Sh8qlgD1K6HtvxK9/fOXYT6Ckdv9Iav9s=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>www/build/polyfills.js</key>
@@ -3249,11 +3333,19 @@
 		<dict>
 			<key>hash</key>
 			<data>
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
 			8w9e+NpdZOZ7C4MEM3G3USNLm7o=
 			</data>
 			<key>hash2</key>
 			<data>
 			gXArJmZr0HrwDH0F8qajjzU7oSqf3UHQqAkFEa/HKbw=
+=======
+			otcgYITmN71Dm5PoS7WfEWnuUbE=
+			</data>
+			<key>hash2</key>
+			<data>
+			AOYJmNqQrzCHAT2h5hb+PJWmlB3Eb9vncjZyBwlcJBs=
+>>>>>>> Change travis.yml
 			</data>
 		</dict>
 		<key>www/index.html</key>

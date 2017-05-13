@@ -104,8 +104,13 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.2.1",
     "cordova-plugin-whitelist": "1.3.1",
     "ionic-plugin-keyboard": "2.2.1",
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
     "com.googlemaps.ios": "2.2.0",
     "cordova-plugin-googlemaps": "1.4.0"
+=======
+    "cordova-plugin-googlemaps": "1.4.0",
+    "com.googlemaps.ios": "2.2.0"
+>>>>>>> Change travis.yml
 };
 // BOTTOM OF METADATA
 });

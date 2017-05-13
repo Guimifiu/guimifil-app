@@ -1,5 +1,6 @@
 {
     "AddressBook.framework": 1,
+<<<<<<< 3c6377bfc98ac039ab71f0de0105b2b0208a580c
     "CoreText.framework": 2,
     "SafariServices.framework": 1,
     "Security.framework": 1,
@@ -14,5 +15,21 @@
     "libc++.dylib": 1,
     "OpenGLES.framework": 1,
     "QuartzCore.framework": 1,
+=======
+    "SafariServices.framework": 1,
+    "Security.framework": 1,
+    "libz.tbd": 1,
+    "Accelerate.framework": 1,
+    "CoreData.framework": 1,
+    "CoreLocation.framework": 1,
+    "CoreText.framework": 1,
+    "GLKit.framework": 1,
+    "ImageIO.framework": 1,
+    "libc++.dylib": 1,
+    "libz.dylib": 1,
+    "OpenGLES.framework": 1,
+    "QuartzCore.framework": 1,
+    "SystemConfiguration.framework": 1,
+>>>>>>> Change travis.yml
     "UIKit.framework": 1
 }
