@@ -12,7 +12,8 @@
     "codecov": "codecov -t f23228f0-dbf1-4d09-858d-0230a2911bd0",
     "test": "ng test",
     "env:ios": "./scripts/convert-environment-ios.sh",
-    "env:linux": "./scripts/convert-environment-linux.sh"
+    "env:linux": "./scripts/convert-environment-linux.sh",
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "@angular/common": "2.4.8",

@@ -37,9 +37,11 @@ before_script:
   - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
 
 script:
-  - npm run env:linux -- staging
+  - if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run env:linux -- staging; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run env:linux -- production; fi
   - npm run test-coverage
 
 after_success:
   - npm run codecov
-  - scripts/deploy-beta.sh
+  - if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run deploy -- staging; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run deploy -- production; fi

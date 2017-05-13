@@ -1,0 +1,34 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "1.109.0"
+
+# This value helps us track success metrics for Fastfiles
+# we automatically generate. Feel free to remove this line
+# once you get things running smoothly!
+generated_fastfile_id "3b05f484-1221-4692-8f7d-7f2866a80b8f"
+
+default_platform :android
+
+# Fastfile actions accept additional configuration, but
+# don't worry, fastlane will prompt you for required
+# info which you can add here later
+lane :beta do
+  # build the release variant
+  gradle(task: "assembleRelease")
+
+  emails = ['guimifiu@gmail.com', 'marcowilliamdf@gmail.com']
+
+  # upload to Beta by Crashlytics
+  crashlytics(api_token: 'ff899a67a5fac8093310613f971d0bdd14bbcbec',
+            build_secret: '424d952410c37afe9c4aed7af3545df969a8cc3bb66ad85965aae1a524c5555a',
+                  emails: emails,
+                  notes: 'Distributed with fastlane', # Check out the changelog_from_git_commits action
+          notifications: true) # Should this distribution notify your testers via email?
+
+  slack(
+    slack_url: "https://hooks.slack.com/services/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",
+    channel: "ferramentas",
+    message: "Successfully uploaded a beta release - see it at https://fabric.io/_/beta"
+  )
+end
