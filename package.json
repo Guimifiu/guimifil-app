@@ -11,7 +11,7 @@
     "test-coverage": "ng test --code-coverage --single-run",
     "codecov": "codecov -t f23228f0-dbf1-4d09-858d-0230a2911bd0",
     "test": "ng test",
-    "env:ios": "./scripts/convert-environment-ios.sh",
+    "env:osx": "./scripts/convert-environment-osx.sh",
     "env:linux": "./scripts/convert-environment-linux.sh",
     "deploy": "./scripts/deploy.sh"
   },
@@ -54,7 +54,6 @@
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-coverage-istanbul-reporter": "^1.2.0",
-    "karma-env-preprocessor": "^0.1.1",
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",

@@ -11,19 +11,13 @@ module.exports = function (config) {
       require('karma-remap-istanbul'),
       require('karma-mocha-reporter'),
       require('angular-cli/plugins/karma'),
-      require('karma-env-preprocessor'),
     ],
     files: [
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
-      '**/*.js': ['env'],
       './src/test.ts': ['angular-cli']
     },
-    envPreprocessor: [
-      'GUIMIFIU_API_TOKEN_STAGING',
-      'GUIMIFIU_API_TOKEN_PRODUCTION'
-    ],
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
