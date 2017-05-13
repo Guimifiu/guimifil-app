@@ -27,6 +27,7 @@ plugins/android.json
 plugins/ios.json
 www/
 src/config/environment-production.ts
+src/config/environment-staging.ts
 $RECYCLE.BIN/
 
 .DS_Store
