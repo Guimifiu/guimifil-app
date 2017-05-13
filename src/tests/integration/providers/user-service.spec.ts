@@ -17,6 +17,8 @@ describe('Integration test: Providers: UserService', () => {
   }));
 
   beforeEach(async(() => {
+    console.log("TESTANDO");
+    console.log(process.env.GUIMIFIU_API_TOKEN_STAGING);
     user = new User();
     user.name = "App";
     user.surname = "Teste";
