@@ -16,17 +16,20 @@ describe('Integration test: Providers: UserService', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     user = new User();
+    user.name = "App";
+    user.surname = "Teste";
     user.email = 'apptest@apptest.com';
     user.password = '12345678';
+    user.provider = 'email';
     userService = getTestBed().get(UserService);
     userService.create(user);
-  })
+  }));
 
-  afterEach(() => {
+  afterEach(async(() => {
     userService.delete(user);
-  })
+  }));
 
   describe('getUser()', () => {
     it('should get User', async(() => {
