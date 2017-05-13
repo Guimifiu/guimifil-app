@@ -18,6 +18,10 @@ module.exports = function (config) {
     preprocessors: {
       './src/test.ts': ['angular-cli']
     },
+    envPreprocessor: [
+      'GUIMIFIU_API_TOKEN_STAGING',
+      'GUIMIFIU_API_TOKEN_PRODUCTION'
+    ],
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
