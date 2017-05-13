@@ -1,9 +1,6 @@
-#sudo: required
-
 language: node_js
 node_js:
-  - "6.2.0"
-
+- 6.2.0
 addons:
   apt:
     sources:
@@ -14,34 +11,32 @@ addons:
     - lib32stdc++6
     - lib32z1
 env:
-  CXX=g++-4.8
-
+  matrix:
+  - CXX=g++-4.8
+  global:
+    secure: NIry5IBQo8Wt6pItAiFrcWGEDh72iIkD6uvwd+1xyhRtQeLiuJelWyZHaLod9edBkNs8/6gR7KhwXwSDRJE+Yeiw7tk3WVxXnVC+Y/7HxadMzP2iajYzs+Er5JXSk7CBjJmfsGhNfl4u1sl4/VT6Dhs5tqA1P6nhQPCvWf5qywzIqhhtu38CvSyu/Xw+08JDx4kxBWmZF8KygVCmuh++gg99tlQqIBNeTYrRUHV9D/vkGHLP7V5sT+NIeZZjcT4OGkXQAb7mUzX0INH0bZgsVLiEqxsqu81K5IlSxlUkneOVej/nKx+oHL3Lgd/q6JkN6fffTFgqwXpngSQlweU42PTebcr/iMrw/0GSQEnUYGSQ6EcsX7ChOCUTBvmKJlqy6U10c1IF/W0asJWBdCoN1LEnMKRCAgrY6anHgn74JFVN/C5NASTHo1AwqqA5cSVAuGSzgcqRdayTArpNJZgCFsQYDenmQZDQ9VDntv68MDuiXL+aurkSeJMMQ9JCznK0lKM697WTBk94nLBPHyqg0Tr87pEUJ24uAUzJOVYdfetrcgXfvNElKa4sWju1YWm2oxqwSSCllXCOAM7ljtYg+lsj0qDjskund/gqnemYX+NUrJRPxveKRBRSDMG/nkRMoW93V3FngysVwbIfipTFJ7CWcpfyux2xWvsGhrQ34MQ=
 install:
-  - npm install -g gulp bower cordova ionic
-  - npm install
-  - bower update
-  #- gem update fastlane --no-ri --no-rdoc --no-document
-
+- npm install -g gulp bower cordova ionic
+- npm install
+- bower update
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - wget http://dl.google.com/android/android-sdk_r24.4-linux.tgz
-  - tar -xvf android-sdk_r24.4-linux.tgz
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-23.0.2
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-23
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
-  - export ANDROID_HOME=$PWD/android-sdk-linux
-  - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- wget http://dl.google.com/android/android-sdk_r24.4-linux.tgz
+- tar -xvf android-sdk_r24.4-linux.tgz
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-23.0.2
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-23
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
+- export ANDROID_HOME=$PWD/android-sdk-linux
+- export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
 script:
-  - if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run env:linux -- staging; fi
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run env:linux -- production; fi
-  - npm run test-coverage
-
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run env:linux -- staging; fi
+- if [ "$TRAVIS_BRANCH" = "master" ]; then npm run env:linux -- production; fi
+- npm run test-coverage
 after_success:
-  - npm run codecov
-  - if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run deploy -- staging; fi
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run deploy -- production; fi
+- npm run codecov
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run deploy -- staging; fi
+- if [ "$TRAVIS_BRANCH" = "master" ]; then npm run deploy -- production; fi
