@@ -17,10 +17,10 @@ env:
     secure: NIry5IBQo8Wt6pItAiFrcWGEDh72iIkD6uvwd+1xyhRtQeLiuJelWyZHaLod9edBkNs8/6gR7KhwXwSDRJE+Yeiw7tk3WVxXnVC+Y/7HxadMzP2iajYzs+Er5JXSk7CBjJmfsGhNfl4u1sl4/VT6Dhs5tqA1P6nhQPCvWf5qywzIqhhtu38CvSyu/Xw+08JDx4kxBWmZF8KygVCmuh++gg99tlQqIBNeTYrRUHV9D/vkGHLP7V5sT+NIeZZjcT4OGkXQAb7mUzX0INH0bZgsVLiEqxsqu81K5IlSxlUkneOVej/nKx+oHL3Lgd/q6JkN6fffTFgqwXpngSQlweU42PTebcr/iMrw/0GSQEnUYGSQ6EcsX7ChOCUTBvmKJlqy6U10c1IF/W0asJWBdCoN1LEnMKRCAgrY6anHgn74JFVN/C5NASTHo1AwqqA5cSVAuGSzgcqRdayTArpNJZgCFsQYDenmQZDQ9VDntv68MDuiXL+aurkSeJMMQ9JCznK0lKM697WTBk94nLBPHyqg0Tr87pEUJ24uAUzJOVYdfetrcgXfvNElKa4sWju1YWm2oxqwSSCllXCOAM7ljtYg+lsj0qDjskund/gqnemYX+NUrJRPxveKRBRSDMG/nkRMoW93V3FngysVwbIfipTFJ7CWcpfyux2xWvsGhrQ34MQ=
 before_install:
 - openssl aes-256-cbc -K $encrypted_b812b70dff73_key -iv $encrypted_b812b70dff73_iv
-  -in src/config/environment-production.ts.enc -out src/config/environment-production.ts -d
-- openssl aes-256-cbc -K $encrypted_b812b70dff73_key -iv $encrypted_b812b70dff73_iv
-  -in src/config/environment-staging.ts.enc -out src/config/environment-staging.ts
+  -in src/config/environment-staging-production.tar.enc -out src/config/environment-staging-production.tar
   -d
+- cd src/config/
+- tar xvf environment-staging-production.tar
 install:
 - npm install -g gulp bower cordova ionic
 - npm install

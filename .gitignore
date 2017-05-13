@@ -28,6 +28,7 @@ plugins/ios.json
 www/
 src/config/environment-production.ts
 src/config/environment-staging.ts
+src/config/environment-staging-production.tar
 $RECYCLE.BIN/
 
 .DS_Store
