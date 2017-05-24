@@ -27,6 +27,7 @@
     "@angular/platform-server": "2.4.8",
     "@ionic-native/core": "^3.7.0",
     "@ionic-native/facebook": "^3.4.4",
+    "@ionic-native/geolocation": "^3.10.3",
     "@ionic-native/google-maps": "^3.7.0",
     "@ionic-native/google-plus": "^3.4.4",
     "@ionic-native/native-storage": "^3.4.4",

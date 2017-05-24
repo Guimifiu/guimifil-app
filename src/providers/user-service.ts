@@ -48,7 +48,7 @@ export class UserService {
   }
   authenticate(user) {
     return new Promise((resolve, reject) => {
-      let url = this.endpoint + 'sign_in'
+      let url = this.endpoint + 'sign-in'
       let body = { 'user': user }
       this.http
         .post(url, body, API.options)

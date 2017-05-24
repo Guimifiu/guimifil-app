@@ -7,31 +7,94 @@ import {
   LatLng, 
   CameraPosition,
   MarkerOptions,
-  Marker
+  Marker,
+  GoogleMapsAnimation
  } from '@ionic-native/google-maps' 
+ import { Geolocation } from '@ionic-native/geolocation';
+
+ import { GasStationService } from '../../providers/gas-station-service';
+ import { LoadingService } from '../../providers/loading-service';
+ import { GasStation } from '../../models/gas-station';
+ 
  
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html',
-  providers: [GoogleMaps]
+  providers: [
+    GoogleMaps,
+    GasStationService,
+    LoadingService,
+    Geolocation
+  ]
 })
 export class HomePage {
  
-    // TODO
-    // Create a service to google maps
+    gasStations: GasStation[] = [];
+    map: GoogleMap;
+
     constructor(
       public navCtrl: NavController, 
       public platform: Platform,
-      private googleMaps: GoogleMaps
+      private googleMaps: GoogleMaps,
+      private gasStationService: GasStationService,
+      private loadingService: LoadingService,
+      private geolocation: Geolocation
     ){
       platform.ready().then(() => {
           this.loadMap();
       });
     }
  
-    loadMap(){
-      let location = new LatLng(-15.796450, -47.896521);
+    ngOnInit(){
+      this.getAllGasStations();
+    }
 
+    getAllGasStations() {
+      this.loadingService.showLoading('Carregando Postos...');
+      this.gasStationService
+        .getAll()
+        .then(gasStations => {
+          for(var i in gasStations)
+            this.gasStations.push(gasStations[i]);
+        }).then(() => {
+          this.loadingService.dismissLoading();
+          this.plotGasStationsOnMap();
+        });
+      }
+
+    plotGasStationsOnMap() {
+      for(var i in this.gasStations){
+        let location = new LatLng(parseFloat(this.gasStations[i].latitude), parseFloat(this.gasStations[i].longitude));
+        let markerOptions: MarkerOptions = {
+          position: location,
+          snippet: this.gasStations[i].vicinity,
+          title: this.gasStations[i].name,
+          icon: { url : 'assets/images/pump_map.png', size: { height: 50, width: 35 } },
+          animation: GoogleMapsAnimation.BOUNCE,
+          infoClick: () => {
+            alert("Informações do posto");
+          }
+        }; 
+
+        this.map.addMarker(markerOptions)
+        .then((marker: Marker) => {
+          
+        });
+      }
+    }
+
+    getUserCurrentLocation(): Promise<LatLng> {
+      return this.geolocation.
+        getCurrentPosition().
+        then((response) => {
+          let location = new LatLng(response.coords.latitude, response.coords.longitude);
+          return location;
+        }).catch((error) => {
+          console.log('Error getting location', error);
+      });
+    }
+
+    loadMap(){
       let mapOptions = {
         'backgroundColor': 'white',
         'controls': {
@@ -49,31 +112,22 @@ export class HomePage {
       }
 
       let mapElement: HTMLElement = document.getElementById('map');
-      let map = new GoogleMap(mapElement, mapOptions);
+      this.map = new GoogleMap(mapElement, mapOptions);
 
-      map.one(GoogleMapsEvent.MAP_READY)
+      this.map.one(GoogleMapsEvent.MAP_READY)
       .then( () => {
         console.log('Map is ready!');
       });
  
-    
-
-      let position: CameraPosition = {
-        target: location,
-        zoom: 18,
-        tilt: 30
-      };
-
-      map.moveCamera(position);
-
-      let markerOptions: MarkerOptions = {
-        position: location,
-        title: 'Price:'
-      }; 
-
-      let marker = map.addMarker(markerOptions)
-      .then((marker: Marker) => {
-          marker.showInfoWindow();
-      });
+      this.getUserCurrentLocation()
+      .then(location => {
+        this.getUserCurrentLocation()
+        let position: CameraPosition = {
+          target: location,
+          zoom: 15,
+          tilt: 30
+        };
+        this.map.moveCamera(position);
+      })
     }
 }
