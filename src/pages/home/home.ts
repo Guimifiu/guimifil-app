@@ -50,6 +50,9 @@ export class HomePage {
  
     ngOnInit(){
       this.getAllGasStations();
+      if(this.map != null)
+        this.map.setClickable(true);
+        
     }
 
     getAllGasStations() {
@@ -136,8 +139,10 @@ export class HomePage {
     showSearchPlaceModal () {
       let modal = this.modalController.create(SearchPlacePage);
       modal.onDidDismiss(data => {
+        this.map.setClickable(true);
         this.searchedPlace = data;
       });
+      this.map.setClickable(false);
       modal.present();
     }
 }

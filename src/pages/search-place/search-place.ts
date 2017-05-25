@@ -1,5 +1,5 @@
-import { Component, NgZone} from '@angular/core';
-import { NavController, NavParams, ViewController} from 'ionic-angular';
+import { Component, NgZone, ViewChild} from '@angular/core';
+import { NavController, NavParams, ViewController, Searchbar} from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native'
 
 
@@ -9,6 +9,7 @@ import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native'
 })
 export class SearchPlacePage {
 
+  @ViewChild('searchbar') searchbar: Searchbar;
   autocompleteItems = [];
   query = '';
   googleMapsService = new google.maps.places.AutocompleteService();
@@ -18,13 +19,17 @@ export class SearchPlacePage {
     private zone: NgZone
   ) {}
  
+  ionViewDidLoad() { 
+    setTimeout(() => { 
+      this.searchbar.setFocus();
+    }, 150); 
+  }
+
   dismiss() {
-    console.log("CLICK");
     this.viewController.dismiss('');
   }
  
   chooseItem(item: any) {
-    console.log("CLICKou")
     this.viewController.dismiss(item);
   }
   
@@ -44,7 +49,9 @@ export class SearchPlacePage {
         let currentPage = this;
         this.zone.run(() => {
           predictions.forEach((prediction) => {
-            currentPage.autocompleteItems.push(prediction.description);
+            currentPage.
+            autocompleteItems.
+            push([prediction['structured_formatting']['main_text'], prediction['structured_formatting']['secondary_text']]);
           });
         });
       }
