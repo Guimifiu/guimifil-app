@@ -30,7 +30,7 @@ export class SearchPlacePage {
   }
  
   chooseItem(item: any) {
-    this.viewController.dismiss(item);
+    this.viewController.dismiss(item[2]);
   }
   
   updateSearch() {
@@ -51,7 +51,11 @@ export class SearchPlacePage {
           predictions.forEach((prediction) => {
             currentPage.
             autocompleteItems.
-            push([prediction['structured_formatting']['main_text'], prediction['structured_formatting']['secondary_text']]);
+            push([
+              prediction['structured_formatting']['main_text'], 
+              prediction['structured_formatting']['secondary_text'], 
+              prediction['description']
+            ]);
           });
         });
       }

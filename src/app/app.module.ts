@@ -22,6 +22,7 @@ import { FacebookService } from '../providers/facebook-service';
 import { GoogleService } from '../providers/google-service';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Geocoder } from '@ionic-native/google-maps' 
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
     GoogleService,
     Facebook,
     GooglePlus,
+    Geocoder,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

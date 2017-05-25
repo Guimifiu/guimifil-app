@@ -9,13 +9,14 @@ import {
   MarkerOptions,
   Marker,
   GoogleMapsAnimation,
- } from '@ionic-native/google-maps' 
- import { Geolocation } from '@ionic-native/geolocation';
+} from '@ionic-native/google-maps' 
+import { Geolocation } from '@ionic-native/geolocation';
 
- import { GasStationService } from '../../providers/gas-station-service';
- import { LoadingService } from '../../providers/loading-service';
- import { GasStation } from '../../models/gas-station';
- import { SearchPlacePage } from '../search-place/search-place';
+import { GasStationService } from '../../providers/gas-station-service';
+import { MapService } from '../../providers/map-service';
+import { LoadingService } from '../../providers/loading-service';
+import { GasStation } from '../../models/gas-station';
+import { SearchPlacePage } from '../search-place/search-place';
  
  
 @Component({
@@ -25,7 +26,8 @@ import {
     GoogleMaps,
     GasStationService,
     LoadingService,
-    Geolocation
+    Geolocation,
+    MapService
   ]
 })
 export class HomePage {
@@ -41,7 +43,8 @@ export class HomePage {
       private gasStationService: GasStationService,
       private loadingService: LoadingService,
       private geolocation: Geolocation,
-      private modalController: ModalController
+      private modalController: ModalController,
+      private mapService: MapService
     ){
       platform.ready().then(() => {
           this.loadMap();
@@ -118,31 +121,34 @@ export class HomePage {
 
       let mapElement: HTMLElement = document.getElementById('map');
       this.map = new GoogleMap(mapElement, mapOptions);
+      this.mapService.currentMap = this.map;
 
       this.map.one(GoogleMapsEvent.MAP_READY)
       .then( () => {
-        console.log('Map is ready!');
+        this.mapService.moveCameraToCurrentPosition();
       });
- 
-      this.getUserCurrentLocation()
-      .then(location => {
-        this.getUserCurrentLocation()
-        let position: CameraPosition = {
-          target: location,
-          zoom: 15,
-          tilt: 30
-        };
-        this.map.moveCamera(position);
-      })
     }
 
     showSearchPlaceModal () {
       let modal = this.modalController.create(SearchPlacePage);
       modal.onDidDismiss(data => {
-        this.map.setClickable(true);
+        this.mapService.enableMap()
         this.searchedPlace = data;
+        this.moveCameraToDestinationMarker();
       });
-      this.map.setClickable(false);
+      this.mapService.disableMap();
       modal.present();
+    }
+
+    moveCameraToDestinationMarker() {
+      if (this.searchedPlace != '') {
+        this.mapService.getPositionFromAddress(this.searchedPlace)
+        .then(result => {
+          let position = new LatLng(result.position.lat, result.position.lng)
+          this.mapService.addDestinationMarker(position);
+          this.mapService.moveCameraToPosition(position);
+        }).catch(error => console.log(JSON.stringify(error)));
+        
+      }
     }
 }
