@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { MenuController, Tabs } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { UserProfilePage } from '../user-profile/user-profile';
@@ -18,8 +18,15 @@ export class MenuTabsPage {
   menuSidePage: any = MenuSidePage;
   mainMenuPage: any = MainMenuPage;
 
+  @ViewChild('myTabs') tabRef: Tabs;
+
   constructor(
   ) 
   {}
+
+  ionViewDidEnter() {
+    this.tabRef.select(0);
+  }
+
 
 }

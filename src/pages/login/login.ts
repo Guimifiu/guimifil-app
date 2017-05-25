@@ -17,7 +17,7 @@ import { LoadingService } from '../../providers/loading-service';
   providers: [ToastService, LoadingService]
 })
 
-export class LoginPage extends Form{
+export class LoginPage extends Form {
 
   user = new User;
   loginForm: FormGroup;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, ModalController } from 'ionic-angular';
 import { 
   GoogleMaps, 
   GoogleMap, 
@@ -8,13 +8,14 @@ import {
   CameraPosition,
   MarkerOptions,
   Marker,
-  GoogleMapsAnimation
+  GoogleMapsAnimation,
  } from '@ionic-native/google-maps' 
  import { Geolocation } from '@ionic-native/geolocation';
 
  import { GasStationService } from '../../providers/gas-station-service';
  import { LoadingService } from '../../providers/loading-service';
  import { GasStation } from '../../models/gas-station';
+ import { SearchPlacePage } from '../search-place/search-place';
  
  
 @Component({
@@ -31,6 +32,7 @@ export class HomePage {
  
     gasStations: GasStation[] = [];
     map: GoogleMap;
+    searchedPlace = '';
 
     constructor(
       public navCtrl: NavController, 
@@ -38,7 +40,8 @@ export class HomePage {
       private googleMaps: GoogleMaps,
       private gasStationService: GasStationService,
       private loadingService: LoadingService,
-      private geolocation: Geolocation
+      private geolocation: Geolocation,
+      private modalController: ModalController
     ){
       platform.ready().then(() => {
           this.loadMap();
@@ -69,8 +72,7 @@ export class HomePage {
           position: location,
           snippet: this.gasStations[i].vicinity,
           title: this.gasStations[i].name,
-          icon: { url : 'assets/images/pump_map.png', size: { height: 50, width: 35 } },
-          animation: GoogleMapsAnimation.BOUNCE,
+          icon: { url : 'assets/images/pump_map.png', size: { height: 40, width: 25 } },
           infoClick: () => {
             alert("Informações do posto");
           }
@@ -129,5 +131,13 @@ export class HomePage {
         };
         this.map.moveCamera(position);
       })
+    }
+
+    showSearchPlaceModal () {
+      let modal = this.modalController.create(SearchPlacePage);
+      modal.onDidDismiss(data => {
+        this.searchedPlace = data;
+      });
+      modal.present();
     }
 }
