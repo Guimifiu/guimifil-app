@@ -16,8 +16,12 @@ export class SearchPlacePage {
  
   constructor (
     public viewController: ViewController, 
-    private zone: NgZone
-  ) {}
+    private zone: NgZone,
+    public navParams: NavParams
+  ) {
+    this.query = navParams.get('query');
+
+  }
  
   ionViewDidLoad() { 
     setTimeout(() => { 
@@ -26,11 +30,19 @@ export class SearchPlacePage {
   }
 
   dismiss() {
-    this.viewController.dismiss('');
+    let place = {
+      'vicinity': '',
+      'id': ''
+    }
+    this.viewController.dismiss(place);
   }
  
   chooseItem(item: any) {
-    this.viewController.dismiss(item[2]);
+    let place = {
+      'vicinity': item[2],
+      'id': item[3]
+    }
+    this.viewController.dismiss(place);
   }
   
   updateSearch() {
@@ -54,7 +66,8 @@ export class SearchPlacePage {
             push([
               prediction['structured_formatting']['main_text'], 
               prediction['structured_formatting']['secondary_text'], 
-              prediction['description']
+              prediction['description'],
+              prediction['place_id']
             ]);
           });
         });

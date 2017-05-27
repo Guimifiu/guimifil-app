@@ -13,6 +13,12 @@ import {
   Geocoder, 
   GeocoderRequest
 } from '@ionic-native/google-maps' 
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+import { ENV } from '../config/environment-development';
+import { API } from '../config/guimifiu-api';
+import { Place } from '../models/place';
 
 
 @Injectable()
@@ -20,6 +26,7 @@ export class MapService {
   currentMap: GoogleMap;
   destinationMarker: Marker;
   constructor(
+    public http: Http,
     private events: Events,
     private geoCoder: Geocoder,
   ) { }
@@ -48,17 +55,19 @@ export class MapService {
   }
 
 
-  addDestinationMarker(position: LatLng) {
+  addDestinationMarker(place: Place, position: LatLng) {
     this.removeDestinationMarker()
     let markerOptions: MarkerOptions = {
       position: position,
-      animation: GoogleMapsAnimation.DROP
+      title: place.name,
+      snippet: place.vicinity,
+      animation: GoogleMapsAnimation.BOUNCE
     }
     return this.currentMap.addMarker(markerOptions)
       .then(marker => {
         this.destinationMarker = marker
+        this.destinationMarker.showInfoWindow();
       })
-      .then(() => this.moveCameraToPosition(position))
   }
 
 
@@ -81,25 +90,19 @@ export class MapService {
     return this.currentMap.getMyLocation({ enableHighAccuracy: true });
   }
 
-  geocode(request: GeocoderRequest) {
+  getPositionFromAddress(place_id: string) : Promise<Place> {
     return new Promise((resolve, reject) => {
-      this.geoCoder.geocode(request).then(results => {
-        if (results.length) {
-          var result = results[0];
-          resolve(result);
-        } else {
-          reject(new Error('Não foram encontrado resultados'))
-        }
-      })
+      let url =  ENV.API_URL + 'get-place-location/' + place_id;
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as Place),
+          error => reject(error),
+          () => console.log("got Position")
+        );
     });
   }
 
-
-  getPositionFromAddress(address: string): Promise<GeocoderResult> {
-    let request = {
-      address: address
-    }
-    return this.geocode(request);
-  }
 
 }

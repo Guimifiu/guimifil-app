@@ -16,9 +16,9 @@ import { GasStationService } from '../../providers/gas-station-service';
 import { MapService } from '../../providers/map-service';
 import { LoadingService } from '../../providers/loading-service';
 import { GasStation } from '../../models/gas-station';
+import { Place } from '../../models/place';
 import { SearchPlacePage } from '../search-place/search-place';
- 
- 
+
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html',
@@ -30,11 +30,12 @@ import { SearchPlacePage } from '../search-place/search-place';
     MapService
   ]
 })
+
 export class HomePage {
  
     gasStations: GasStation[] = [];
     map: GoogleMap;
-    searchedPlace = '';
+    searchedPlace = new Place();
 
     constructor(
       public navCtrl: NavController, 
@@ -130,25 +131,27 @@ export class HomePage {
     }
 
     showSearchPlaceModal () {
-      let modal = this.modalController.create(SearchPlacePage);
+      let data = { 'query': this.searchedPlace.vicinity }
+      let modal = this.modalController.create(SearchPlacePage, data);
       modal.onDidDismiss(data => {
         this.mapService.enableMap()
         this.searchedPlace = data;
-        this.moveCameraToDestinationMarker();
+        this.manageDestinationMarker();
       });
       this.mapService.disableMap();
       modal.present();
     }
 
-    moveCameraToDestinationMarker() {
-      if (this.searchedPlace != '') {
-        this.mapService.getPositionFromAddress(this.searchedPlace)
-        .then(result => {
-          let position = new LatLng(result.position.lat, result.position.lng)
-          this.mapService.addDestinationMarker(position);
+    manageDestinationMarker() {
+      if (this.searchedPlace.vicinity != '') {
+        this.loadingService.showLoading('Carregando...')
+        this.mapService.getPositionFromAddress(this.searchedPlace.id)
+        .then(place => {
+          let position = new LatLng(parseFloat(place.latitude), parseFloat(place.longitude))
           this.mapService.moveCameraToPosition(position);
-        }).catch(error => console.log(JSON.stringify(error)));
-        
+          this.mapService.addDestinationMarker(place, position);
+        }).catch(error => console.log(JSON.stringify(error)))
+        .then(() => this.loadingService.dismissLoading())
       }
     }
 }
