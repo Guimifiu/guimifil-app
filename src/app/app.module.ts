@@ -13,7 +13,7 @@ import { MenuSidePage } from '../pages/menu-side/menu-side';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
-import { SearchPlacePage } from '../pages/search-place/search-place';
+import { SearchPlaceBarComponent } from '../components/search-place-bar/search-place-bar';
 
 import { UserData } from '../providers/user-data';
 import { AuthenticationService } from '../providers/authentication-service';
@@ -36,7 +36,7 @@ import { Geocoder } from '@ionic-native/google-maps'
     LoginPage,
     RegisterPage,
     MainMenuPage,
-    SearchPlacePage
+    SearchPlaceBarComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -52,7 +52,7 @@ import { Geocoder } from '@ionic-native/google-maps'
     LoginPage,
     RegisterPage,
     MainMenuPage,
-    SearchPlacePage
+    SearchPlaceBarComponent
   ],
   providers: [
     StatusBar,

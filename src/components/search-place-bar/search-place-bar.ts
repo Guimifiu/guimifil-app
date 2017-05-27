@@ -1,59 +1,52 @@
-import { Component, NgZone, ViewChild} from '@angular/core';
-import { NavController, NavParams, ViewController, Searchbar} from 'ionic-angular';
+import { Component, NgZone, ViewChild, Input, Output, EventEmitter} from '@angular/core';
+import { NavController, NavParams, ViewController, Searchbar, Keyboard} from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native'
 
+import { Place } from '../../models/place';
+import { MapService } from '../../providers/map-service';
+MapService
 
 @Component({
-  selector: 'page-search-place',
-  templateUrl: 'search-place.html'
+  selector: 'search-place-bar',
+  templateUrl: 'search-place-bar.html',
+  providers: [MapService]
 })
-export class SearchPlacePage {
+export class SearchPlaceBarComponent {
 
-  @ViewChild('searchbar') searchbar: Searchbar;
+  @Output() search = new EventEmitter();
   autocompleteItems = [];
-  query = '';
+  searchedPlace = new Place();
   googleMapsService = new google.maps.places.AutocompleteService();
  
   constructor (
-    public viewController: ViewController, 
     private zone: NgZone,
-    public navParams: NavParams
+    private mapService: MapService,
+    public keyboard: Keyboard
   ) {
-    this.query = navParams.get('query');
-
   }
  
   ionViewDidLoad() { 
-    setTimeout(() => { 
-      this.searchbar.setFocus();
-    }, 150); 
-  }
-
-  dismiss() {
-    let place = {
-      'vicinity': '',
-      'id': ''
-    }
-    this.viewController.dismiss(place);
   }
  
   chooseItem(item: any) {
-    let place = {
-      'vicinity': item[2],
-      'id': item[3]
-    }
-    this.viewController.dismiss(place);
+    this.mapService.enableMap();
+    this.autocompleteItems = [];
+    this.searchedPlace.vicinity = item[2];
+    this.searchedPlace.id = item[3];
+    this.keyboard.close();
+    this.search.emit(this.searchedPlace);
   }
   
   updateSearch() {
-    if (this.query == '') {
+    this.mapService.disableMap();
+    if (this.searchedPlace.vicinity == '') {
       this.autocompleteItems = [];
       return;
     }
     this.googleMapsService
     .getPlacePredictions(
       { 
-        input: this.query, 
+        input: this.searchedPlace.vicinity, 
         componentRestrictions: {country: 'BR'} 
       }, 
       (predictions, status) => {

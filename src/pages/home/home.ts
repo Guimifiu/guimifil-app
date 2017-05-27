@@ -35,7 +35,6 @@ export class HomePage {
  
     gasStations: GasStation[] = [];
     map: GoogleMap;
-    searchedPlace = new Place();
 
     constructor(
       public navCtrl: NavController, 
@@ -130,22 +129,10 @@ export class HomePage {
       });
     }
 
-    showSearchPlaceModal () {
-      let data = { 'query': this.searchedPlace.vicinity }
-      let modal = this.modalController.create(SearchPlacePage, data);
-      modal.onDidDismiss(data => {
-        this.mapService.enableMap()
-        this.searchedPlace = data;
-        this.manageDestinationMarker();
-      });
-      this.mapService.disableMap();
-      modal.present();
-    }
-
-    manageDestinationMarker() {
-      if (this.searchedPlace.vicinity != '') {
+    manageDestinationMarker(searchedPlace) {
+      if (searchedPlace.vicinity != '') {
         this.loadingService.showLoading('Carregando...')
-        this.mapService.getPositionFromAddress(this.searchedPlace.id)
+        this.mapService.getPositionFromAddress(searchedPlace.id)
         .then(place => {
           let position = new LatLng(parseFloat(place.latitude), parseFloat(place.longitude))
           this.mapService.moveCameraToPosition(position);

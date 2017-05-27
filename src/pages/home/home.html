@@ -1,7 +1,7 @@
 <ion-content>
   <div #map id="map">
     <div class="search-place">
-      <ion-searchbar (ionChange)="showSearchPlaceModal()" (click)="showSearchPlaceModal()" [(ngModel)]="searchedPlace.vicinity" type="text" placeholder="Endereço"></ion-searchbar>
+      <search-place-bar (search)="manageDestinationMarker($event)"></search-place-bar>
     </div>
   </div>
 </ion-content>

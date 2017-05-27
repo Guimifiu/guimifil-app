@@ -60,8 +60,8 @@ export class MapService {
     let markerOptions: MarkerOptions = {
       position: position,
       title: place.name,
-      snippet: place.vicinity,
-      animation: GoogleMapsAnimation.BOUNCE
+      snippet: place.vicinity
+      // animation: GoogleMapsAnimation.BOUNCE
     }
     return this.currentMap.addMarker(markerOptions)
       .then(marker => {

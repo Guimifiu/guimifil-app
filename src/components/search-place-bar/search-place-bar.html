@@ -1,0 +1,7 @@
+<ion-searchbar #searchbar type="text" placeholder="Endereço" [(ngModel)]="searchedPlace.vicinity" (ionInput)="updateSearch()"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+    <p>{{ item[0] }}
+    <p>{{ item[1] }}
+  </ion-item>
+</ion-list>
