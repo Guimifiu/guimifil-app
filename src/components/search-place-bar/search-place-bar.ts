@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild, Input, Output, EventEmitter} from '@angular/core';
+import { Component, NgZone, ViewChild, Output, EventEmitter} from '@angular/core';
 import { NavController, NavParams, ViewController, Searchbar, Keyboard} from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native'
 
