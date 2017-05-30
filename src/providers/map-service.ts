@@ -19,6 +19,7 @@ import 'rxjs/add/operator/map';
 import { ENV } from '../config/environment-development';
 import { API } from '../config/guimifiu-api';
 import { Place } from '../models/place';
+import { GasStation } from '../models/gas-station';
 
 
 @Injectable()
@@ -74,7 +75,7 @@ export class MapService {
   moveCameraToPosition(position: LatLng) {
     let cameraPosition: CameraPosition = {
       target: position,
-      zoom: 16,
+      zoom: 10,
       tilt: 30
     }
     this.currentMap.moveCamera(cameraPosition);
@@ -100,6 +101,20 @@ export class MapService {
           data => resolve(data as Place),
           error => reject(error),
           () => console.log("got Position")
+        );
+    });
+  }
+
+  getGasStationsOnDirection(originLat, originLng, destLat, destLng) : Promise<GasStation[]> {
+    return new Promise((resolve, reject) => {
+      let url =  `${ENV.API_URL}get-gas-stations-on-direction?origin=${originLat},${originLng}&destination=${destLat},${destLng}`
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as GasStation[]),
+          error => reject(error),
+          () => console.log("got Gas stations on direction")
         );
     });
   }

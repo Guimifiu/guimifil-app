@@ -32,8 +32,6 @@ import { SearchPlacePage } from '../search-place/search-place';
 })
 
 export class HomePage {
- 
-    gasStations: GasStation[] = [];
     map: GoogleMap;
 
     constructor(
@@ -47,37 +45,44 @@ export class HomePage {
       private mapService: MapService
     ){
       platform.ready().then(() => {
-          this.loadMap();
+          this.loadMap()
       });
     }
  
     ngOnInit(){
-      this.getAllGasStations();
       if(this.map != null)
-        this.map.setClickable(true);
-        
+        this.map.setClickable(true);  
+      if(this.mapService.currentMap != null)
+        this.getClosestGasStations();
     }
 
-    getAllGasStations() {
+    getClosestGasStations() {
+      this.mapService.currentMap.clear();
       this.loadingService.showLoading('Carregando Postos...');
-      this.gasStationService
-        .getAll()
-        .then(gasStations => {
-          for(var i in gasStations)
-            this.gasStations.push(gasStations[i]);
-        }).then(() => {
+      this.mapService
+        .getCurrentPosition()
+        .then(currentPosition => {
+          let lat = currentPosition.latLng.lat
+          let lng = currentPosition.latLng.lng
+          this.gasStationService
+          .getClosestGasStations(lat, lng)
+          .then(gasStations => {
+            this.plotGasStationsOnMap(gasStations);
+            this.loadingService.dismissLoading()
+          })
+        }).catch(error => {
+          console.log(JSON.stringify(error));
           this.loadingService.dismissLoading();
-          this.plotGasStationsOnMap();
         });
       }
 
-    plotGasStationsOnMap() {
-      for(var i in this.gasStations){
-        let location = new LatLng(parseFloat(this.gasStations[i].latitude), parseFloat(this.gasStations[i].longitude));
+    plotGasStationsOnMap(gasStations) {
+      for(var i in gasStations){
+        let location = new LatLng(parseFloat(gasStations[i].latitude), parseFloat(gasStations[i].longitude));
         let markerOptions: MarkerOptions = {
           position: location,
-          snippet: this.gasStations[i].vicinity,
-          title: this.gasStations[i].name,
+          snippet: gasStations[i].vicinity,
+          title: gasStations[i].name,
           icon: { url : 'assets/images/pump_map.png', size: { height: 40, width: 25 } },
           infoClick: () => {
             alert("Informações do posto");
@@ -122,6 +127,7 @@ export class HomePage {
       let mapElement: HTMLElement = document.getElementById('map');
       this.map = new GoogleMap(mapElement, mapOptions);
       this.mapService.currentMap = this.map;
+      this.getClosestGasStations();
 
       this.map.one(GoogleMapsEvent.MAP_READY)
       .then( () => {
@@ -129,16 +135,37 @@ export class HomePage {
       });
     }
 
-    manageDestinationMarker(searchedPlace) {
+    handleSearchPlaceInformation(searchedPlace) {
       if (searchedPlace.vicinity != '') {
-        this.loadingService.showLoading('Carregando...')
+        this.loadingService.showLoading('Buscando Postos...')
+        this.mapService.currentMap.clear();
         this.mapService.getPositionFromAddress(searchedPlace.id)
         .then(place => {
           let position = new LatLng(parseFloat(place.latitude), parseFloat(place.longitude))
           this.mapService.moveCameraToPosition(position);
           this.mapService.addDestinationMarker(place, position);
+          this.getGasStationsOnDirection(place);
         }).catch(error => console.log(JSON.stringify(error)))
-        .then(() => this.loadingService.dismissLoading())
       }
+    }
+
+    getGasStationsOnDirection(searchedPlace) {
+      this.mapService
+        .getCurrentPosition()
+        .then(currentPosition => {
+          this.mapService.
+            getGasStationsOnDirection(
+              currentPosition.latLng.lat,
+              currentPosition.latLng.lng,
+              searchedPlace.latitude,
+              searchedPlace.longitude
+            ).then(gasStations => {
+              this.plotGasStationsOnMap(gasStations);
+            }).then(() => this.loadingService.dismissLoading()) 
+        }).catch(error => {
+          this.loadingService.dismissLoading()
+          console.log(JSON.stringify(error))
+        })
+          
     }
 }

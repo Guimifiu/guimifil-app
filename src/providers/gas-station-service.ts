@@ -16,19 +16,33 @@ export class GasStationService {
   }
 
   getAll(): Promise<GasStation[]> {
-  return new Promise((resolve, reject) => {
-    let url = this.endpoint
-    console.log('url:' + url);
-    this.http
-      .get(url, API.options)
-      .map(res => res.json())
-      .subscribe(
-        data => resolve(data as GasStation[]),
-        error => reject(error),
-        () => console.log("User created")
-      );
-  });
-}
+    return new Promise((resolve, reject) => {
+      let url = this.endpoint
+      console.log('url:' + url);
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as GasStation[]),
+          error => reject(error),
+          () => console.log("User created")
+        );
+    });
+  }
 
+  getClosestGasStations(latitude, longitude): Promise<GasStation[]> {
+    return new Promise((resolve, reject) => {
+      let url = `${this.endpoint}closest?latitude=${latitude}&longitude=${longitude}`
+      console.log('url:' + url);
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as GasStation[]),
+          error => reject(error),
+          () => console.log("User created")
+        );
+    });
+  }
 
 }
