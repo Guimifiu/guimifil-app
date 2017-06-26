@@ -1,4 +1,4 @@
-import { ENV } from '../config/environment-development';
+import { ENV } from '../config/environment-staging';
 import { Headers, RequestOptions } from '@angular/http';
 
 let headers = new Headers();

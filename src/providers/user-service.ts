@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { ENV } from '../config/environment-development';
+import { ENV } from '../config/environment-staging';
 import { API } from '../config/guimifiu-api';
 import { User } from '../models/user';
 
