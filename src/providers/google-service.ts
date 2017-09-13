@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GooglePlus } from '@ionic-native/google-plus';
 
-import { ENV } from '../config/environment-staging';
+import { ENV } from '../config/environment-development';
 import { User } from '../models/user';
 
 @Injectable()

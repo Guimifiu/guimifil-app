@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, ModalController } from 'ionic-angular';
-import { 
-  GoogleMaps, 
-  GoogleMap, 
-  GoogleMapsEvent, 
-  LatLng, 
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  LatLng,
   CameraPosition,
   MarkerOptions,
   Marker,
   GoogleMapsAnimation,
-} from '@ionic-native/google-maps' 
+} from '@ionic-native/google-maps'
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { GasStationService } from '../../providers/gas-station-service';
@@ -35,7 +35,7 @@ export class HomePage {
     map: GoogleMap;
 
     constructor(
-      public navCtrl: NavController, 
+      public navCtrl: NavController,
       public platform: Platform,
       private googleMaps: GoogleMaps,
       private gasStationService: GasStationService,
@@ -48,10 +48,10 @@ export class HomePage {
           this.loadMap()
       });
     }
- 
+
     ngOnInit(){
       if(this.map != null)
-        this.map.setClickable(true);  
+        this.map.setClickable(true);
       if(this.mapService.currentMap != null)
         this.getClosestGasStations();
     }
@@ -87,25 +87,25 @@ export class HomePage {
           infoClick: () => {
             alert("Informações do posto");
           }
-        }; 
+        };
 
         this.map.addMarker(markerOptions)
         .then((marker: Marker) => {
-          
+
         });
       }
     }
 
-    getUserCurrentLocation(): Promise<LatLng> {
-      return this.geolocation.
-        getCurrentPosition().
-        then((response) => {
-          let location = new LatLng(response.coords.latitude, response.coords.longitude);
-          return location;
-        }).catch((error) => {
-          console.log('Error getting location', error);
-      });
-    }
+    // getUserCurrentLocation(): Promise<LatLng> {
+    //   return this.geolocation.
+    //     getCurrentPosition().
+    //     then((response) => {
+    //       let location = new LatLng(response.coords.latitude, response.coords.longitude);
+    //       return location;
+    //     }).catch((error) => {
+    //       console.log('Error getting location', error);
+    //   });
+    // }
 
     loadMap(){
       let mapOptions = {
@@ -161,11 +161,11 @@ export class HomePage {
               searchedPlace.longitude
             ).then(gasStations => {
               this.plotGasStationsOnMap(gasStations);
-            }).then(() => this.loadingService.dismissLoading()) 
+            }).then(() => this.loadingService.dismissLoading())
         }).catch(error => {
           this.loadingService.dismissLoading()
           console.log(JSON.stringify(error))
         })
-          
+
     }
 }

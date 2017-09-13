@@ -16,7 +16,7 @@ import {
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { ENV } from '../config/environment-staging';
+import { ENV } from '../config/environment-development';
 import { API } from '../config/guimifiu-api';
 import { Place } from '../models/place';
 import { GasStation } from '../models/gas-station';
