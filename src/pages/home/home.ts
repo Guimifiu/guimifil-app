@@ -10,6 +10,7 @@ import {
   Marker,
   GoogleMapsAnimation,
 } from '@ionic-native/google-maps'
+import { Geofence } from '@ionic-native/geofence';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { GasStationService } from '../../providers/gas-station-service';
@@ -27,7 +28,8 @@ import { SearchPlacePage } from '../search-place/search-place';
     GasStationService,
     LoadingService,
     Geolocation,
-    MapService
+    MapService,
+    Geofence
   ]
 })
 
@@ -42,11 +44,18 @@ export class HomePage {
       private loadingService: LoadingService,
       private geolocation: Geolocation,
       private modalController: ModalController,
-      private mapService: MapService
+      private mapService: MapService,
+      private geofence: Geofence
     ){
       platform.ready().then(() => {
           this.loadMap()
       });
+      geofence.initialize().then(
+        // resolved promise does not return a value
+        () => console.log('Geofence Plugin Ready'),
+        (err) => console.log(err)
+      )
+      this.addGeofence();
     }
 
     ngOnInit(){
@@ -166,6 +175,25 @@ export class HomePage {
           this.loadingService.dismissLoading()
           console.log(JSON.stringify(error))
         })
-
     }
+    private addGeofence() {
+      //options describing geofence
+      let fence = {
+        id: '69ca1b88-6fbe-4e80-a4d4-ff4d3748acdbc', //any unique ID
+        latitude:       -16.013832, //center of geofence radius
+        longitude:      -48.064837,
+        radius:         100, //radius to edge of geofence in meters
+        transitionType: 3, //see 'Transition Types' below
+        notification: { //notification settings
+            id:             789, //any unique ID
+            title:          'You crossed a fence', //notification title
+            text:           'You just arrived to Gliwice city center.', //notification body
+            openAppOnClick: true //open app when notification is tapped
+        }
+      }
+      this.geofence.addOrUpdate(fence).then(
+         () => console.log('Geofence added'),
+         (err) => console.log('Geofence failed to add')
+       );
+   }
 }
