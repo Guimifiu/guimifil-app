@@ -15,7 +15,7 @@ import { LoadingService } from '../../providers/loading-service';
   templateUrl: 'register.html',
   providers: [ToastService, LoadingService]
 })
-export class RegisterPage extends Form{
+export class RegisterPage extends Form {
 
   createSuccess = false;
   user = new User();

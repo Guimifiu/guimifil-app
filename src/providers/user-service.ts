@@ -32,6 +32,23 @@ export class UserService {
     });
   }
 
+  update(user: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = this.endpoint + user.id
+      let body = { 'user': user }
+      console.log('url:' + url);
+      console.log('body:' + JSON.stringify(body));
+      this.http
+        .patch(url, body, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data),
+          error => reject(error),
+          () => console.log("User updated")
+        );
+    });
+  }
+
   delete(user: User): Promise<User> {
     return new Promise((resolve, reject) => {
       let url = this.endpoint + 'delete'

@@ -8,5 +8,24 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit();">
+    <ion-row>
+      <ion-col>
+            <ion-input formControlName="name" type="name" placeholder="Nome" [class.invalid]="isNotEmpty(formErrors.name)"></ion-input>
+          <div class="form__warning" *ngIf="isNotEmpty(formErrors.name)">{{formErrors.name[0]}}</div>
 
+            <ion-input formControlName="surname" type="surname" placeholder="Sobrenome" [class.invalid]="isNotEmpty(formErrors.surname)"></ion-input>
+          <div class="form__warning" *ngIf="isNotEmpty(formErrors.surname)">{{formErrors.surname[0]}}</div>
+
+            <ion-input formControlName="email" type="email" placeholder="Email" [class.invalid]="isNotEmpty(formErrors.email)"></ion-input>
+          <div class="form__warning" *ngIf="isNotEmpty(formErrors.email)">{{formErrors.email[0]}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button class="submit-btn" full type="submit">Atualizar</button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
