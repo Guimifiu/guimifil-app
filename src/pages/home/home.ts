@@ -55,7 +55,6 @@ export class HomePage {
         () => console.log('Geofence Plugin Ready'),
         (err) => console.log(err)
       )
-      this.addGeofence();
     }
 
     ngOnInit(){
@@ -77,6 +76,7 @@ export class HomePage {
           .getClosestGasStations(lat, lng)
           .then(gasStations => {
             this.plotGasStationsOnMap(gasStations);
+            this.createGeofences(gasStations);
             this.loadingService.dismissLoading()
           })
         }).catch(error => {
@@ -84,6 +84,12 @@ export class HomePage {
           this.loadingService.dismissLoading();
         });
       }
+
+    createGeofences(gasStations){
+      for(var i in gasStations){
+        this.addGeofence(gasStations[i]);
+      }
+    }
 
     plotGasStationsOnMap(gasStations) {
       for(var i in gasStations){
@@ -176,21 +182,24 @@ export class HomePage {
           console.log(JSON.stringify(error))
         })
     }
-    private addGeofence() {
-      //options describing geofence
+    private addGeofence(gasStation) {
+      console.log(JSON.stringify(gasStation))
+      console.log(parseFloat(gasStation.latitude));
+      console.log(parseFloat(gasStation.longitude));
       let fence = {
-        id: '69ca1b88-6fbe-4e80-a4d4-ff4d3748acdbc', //any unique ID
-        latitude:       -16.013832, //center of geofence radius
-        longitude:      -48.064837,
-        radius:         100, //radius to edge of geofence in meters
-        transitionType: 3, //see 'Transition Types' below
-        notification: { //notification settings
-            id:             789, //any unique ID
-            title:          'You crossed a fence', //notification title
-            text:           'You just arrived to Gliwice city center.', //notification body
-            openAppOnClick: true //open app when notification is tapped
-        }
+          id:             gasStation.id, //any unique ID
+          latitude:       parseFloat(gasStation.latitude), //center of geofence radius
+          longitude:      parseFloat(gasStation.longitude),
+          radius:         5000,
+          transitionType: 1,
+          notification: {
+              id:             gasStation.id, //any unique ID
+              title:          'Está abastecendo?',
+              text:           'Você entrou no posto ' + gasStation.name + ', está abastecendo nele?',
+              openAppOnClick: true
+          }
       }
+
       this.geofence.addOrUpdate(fence).then(
          () => console.log('Geofence added'),
          (err) => console.log('Geofence failed to add')
