@@ -98,7 +98,7 @@ export class HomePage {
           position: location,
           snippet: gasStations[i].vicinity,
           title: gasStations[i].name,
-          icon: { url : 'assets/images/pump_map.png', size: { height: 40, width: 25 } },
+          icon: { url : './assets/images/pump_map.png', size: { height: 40, width: 25 } },
           infoClick: () => {
             alert("Informações do posto");
           }
@@ -190,7 +190,7 @@ export class HomePage {
           id:             gasStation.id, //any unique ID
           latitude:       parseFloat(gasStation.latitude), //center of geofence radius
           longitude:      parseFloat(gasStation.longitude),
-          radius:         5000,
+          radius:         1000,
           transitionType: 1,
           notification: {
               id:             gasStation.id, //any unique ID
