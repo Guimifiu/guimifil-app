@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, ModalController } from 'ionic-angular';
+import { NavController, Platform, ModalController, AlertController } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -45,7 +45,8 @@ export class HomePage {
       private geolocation: Geolocation,
       private modalController: ModalController,
       private mapService: MapService,
-      private geofence: Geofence
+      private geofence: Geofence,
+      private alertController: AlertController
     ){
       platform.ready().then(() => {
           this.loadMap()
@@ -183,26 +184,40 @@ export class HomePage {
         })
     }
     private addGeofence(gasStation) {
-      console.log(JSON.stringify(gasStation))
-      console.log(parseFloat(gasStation.latitude));
-      console.log(parseFloat(gasStation.longitude));
       let fence = {
           id:             gasStation.id, //any unique ID
           latitude:       parseFloat(gasStation.latitude), //center of geofence radius
           longitude:      parseFloat(gasStation.longitude),
-          radius:         1000,
-          transitionType: 1,
-          notification: {
-              id:             gasStation.id, //any unique ID
-              title:          'Está abastecendo?',
-              text:           'Você entrou no posto ' + gasStation.name + ', está abastecendo nele?',
-              openAppOnClick: true
-          }
+          radius:         1797,
+          transitionType: 1
       }
 
       this.geofence.addOrUpdate(fence).then(
          () => console.log('Geofence added'),
          (err) => console.log('Geofence failed to add')
        );
+
+      this.geofence.onTransitionReceived().subscribe(resp => {
+          let alert = this.alertController.create({
+              title: 'Você está abastecendo?',
+              message: 'Você está abastecendo em ' + String(resp) + "?",
+              buttons: [
+                {
+                  text: 'Não',
+                  role: 'cancel',
+                  handler: () => {
+                    console.log('Não abasteceu');
+                  }
+                },
+                {
+                  text: 'Sim',
+                  handler: () => {
+                    console.log('Abasteceu');
+                  }
+                }
+              ]
+            });
+            alert.present();
+      });
    }
 }
