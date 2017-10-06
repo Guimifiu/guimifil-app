@@ -16,6 +16,21 @@ export class FuelSupplyService {
     console.log('Hello GasStation Provider');
   }
 
+  getAll(user: User): Promise<FuelSupply[]> {
+    return new Promise((resolve, reject) => {
+      let url = this.endpoint + user.id + 'fuel_supplies'
+      console.log('url:' + url);
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as FuelSupply[]),
+          error => reject(error),
+          () => console.log("Got user fuel supplies")
+        );
+    });
+  }
+
   create(user: User, fuelSupply: FuelSupply): Promise<FuelSupply> {
     return new Promise((resolve, reject) => {
       let url = this.endpoint + user.id + '/fuel_supplies'
