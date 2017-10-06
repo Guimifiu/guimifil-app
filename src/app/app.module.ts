@@ -20,6 +20,7 @@ import { SearchPlaceBarComponent } from '../components/search-place-bar/search-p
 import { UserData } from '../providers/user-data';
 import { AuthenticationService } from '../providers/authentication-service';
 import { UserService } from '../providers/user-service';
+import { PriceSuggestionService } from '../providers/price-suggestion-service';
 import { FacebookService } from '../providers/facebook-service';
 import { GoogleService } from '../providers/google-service';
 import { Facebook } from '@ionic-native/facebook';
@@ -72,6 +73,7 @@ import { Geocoder } from '@ionic-native/google-maps'
     Facebook,
     GooglePlus,
     Geocoder,
+    PriceSuggestionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
