@@ -65,7 +65,7 @@ export class MainMenuPage {
   }
 
   goToFuelSupplyHistory() {
-    this.navCtrl.setRoot(FuelSupplyHistoryPage);
+    this.navCtrl.push(FuelSupplyHistoryPage);
   }
 
 }
