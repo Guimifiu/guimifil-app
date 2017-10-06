@@ -87,8 +87,12 @@ export class HomePage {
       }
 
     createGeofences(gasStations){
+      var count = 0;
       for(var i in gasStations) {
-        this.addGeofence(gasStations[i]);
+        if(count < 9) {
+          this.addGeofence(gasStations[i]);
+        }
+        count++;
       }
     }
 

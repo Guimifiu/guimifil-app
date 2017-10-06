@@ -1,0 +1,15 @@
+<ion-content padding no-bounce class="modal">
+  <div class="modal__title">Você está abastecendo?</div>
+  <div class="modal__gas-station">
+    <div class="title"> {{gasStation.name}} </div>
+    <ion-list class="prices">
+      <ion-item>Gasolina: R$ 4.00 <ion-icon class="edit-icon" name="md-create"></ion-icon></ion-item>
+      <ion-item>Álcool: R$ 3.00 <ion-icon class="edit-icon" name="md-create"></ion-icon></ion-item>
+      <ion-item>Diesel: R$ 1.00 <ion-icon class="edit-icon" name="md-create"></ion-icon></ion-item>
+    </ion-list>
+  </div>
+  <div class="modal__answer">
+    <button class="button" (click)="dismiss();"> Sim </button>
+    <button class="button" (click)="dismiss();"> Não </button>
+  </div> 
+</ion-content>

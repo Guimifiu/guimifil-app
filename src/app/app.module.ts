@@ -13,6 +13,8 @@ import { MenuSidePage } from '../pages/menu-side/menu-side';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
+import { AtGasStationPage } from '../pages/at-gas-station/at-gas-station';
+import { ChangeFuelPricesPage } from '../pages/change-fuel-prices/change-fuel-prices';
 import { SearchPlaceBarComponent } from '../components/search-place-bar/search-place-bar';
 
 import { UserData } from '../providers/user-data';
@@ -36,7 +38,9 @@ import { Geocoder } from '@ionic-native/google-maps'
     LoginPage,
     RegisterPage,
     MainMenuPage,
-    SearchPlaceBarComponent
+    SearchPlaceBarComponent,
+    AtGasStationPage,
+    ChangeFuelPricesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -52,7 +56,9 @@ import { Geocoder } from '@ionic-native/google-maps'
     LoginPage,
     RegisterPage,
     MainMenuPage,
-    SearchPlaceBarComponent
+    SearchPlaceBarComponent,
+    AtGasStationPage,
+    ChangeFuelPricesPage
   ],
   providers: [
     StatusBar,
