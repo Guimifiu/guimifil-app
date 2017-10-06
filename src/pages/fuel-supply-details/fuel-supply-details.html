@@ -1,0 +1,14 @@
+<ion-content padding no-bounce class="modal">
+  <div class="modal__title">Abastecimento</div>
+  <div class="modal__gas-station">
+    <div class="title"> {{fuelSupply.gas_station_name}} </div>
+    <div class="subtitle"> {{fuelSupply.date}} </div>
+    <ion-list class="prices">
+      <ion-item *ngIf='fuelSupply.value'>Preço: {{parseFuelSupplyValue(fuelSupply.value)}}</ion-item>
+      <ion-item *ngIf='!fuelSupply.value'>Não abasteceu</ion-item>
+    </ion-list>
+  </div>
+  <div class="modal__answer">
+    <button class="button" (click)="dismiss();"> Fechar </button>
+  </div> 
+</ion-content>

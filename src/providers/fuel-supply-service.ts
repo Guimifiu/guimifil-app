@@ -18,7 +18,7 @@ export class FuelSupplyService {
 
   getAll(user: User): Promise<FuelSupply[]> {
     return new Promise((resolve, reject) => {
-      let url = this.endpoint + user.id + 'fuel_supplies'
+      let url = this.endpoint + user.id + '/fuel_supplies'
       console.log('url:' + url);
       this.http
         .get(url, API.options)

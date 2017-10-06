@@ -1,26 +1,20 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title> Guimifiu </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-list-header>Postos com melhor custo benefício</ion-list-header>
-    <ion-item>
-      <ion-icon name="" item-left></ion-icon>
-      Posto X
-    </ion-item>
-    <ion-item>
-      <ion-icon name="" item-left></ion-icon>
-      Posto Y
-    </ion-item>
-    <ion-item>
-      <ion-icon name="" item-left></ion-icon>
-      Posto Z
-    </ion-item>
-  </ion-list>
-</ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title> Guimifiu </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-list-header>Postos com melhor custo benefício</ion-list-header>
+      <div *ngFor="let gasStations of gasStation">
+        <ion-item>
+          <ion-icon name="" item-left>{{gasStation.name}}</ion-icon>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+  

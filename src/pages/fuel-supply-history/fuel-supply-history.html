@@ -1,3 +1,24 @@
-<ion-content>
-  ALO
-</ion-content>
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title> Guimifiu </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-list-header>Histórico de abastecimento</ion-list-header>
+      <div>Total: R$ {{ getTotalSpent() }}</div>
+      <div *ngFor="let fuelSupply of fuelSupplies">
+        <ion-item (click)='presentFuelSupplyDetails(fuelSupply)'>
+          <div>{{fuelSupply.gas_station_name}}</div>
+          <div *ngIf='fuelSupply.value'>R$ {{parseFuelSupplyValue(fuelSupply.value)}}</div>
+          <div *ngIf='!fuelSupply.value'>Não abasteceu</div>
+          <div>{{fuelSupply.date}}</div>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+  
