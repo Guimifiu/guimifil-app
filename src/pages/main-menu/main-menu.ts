@@ -7,6 +7,7 @@ import { GasStation } from '../../models/gas-station'; //TODO delete it (just fo
 import { FuelSupply } from '../../models/fuel-supply'; //TODO delete it (just for testing)
 import { AtGasStationPage } from '../at-gas-station/at-gas-station';
 import { LoginPage } from '../login/login';
+import { FuelSupplyHistoryPage } from '../fuel-supply-history/fuel-supply-history';
 import { UserData } from '../../providers/user-data'; //TODO delete it (just for testing)
 
 
@@ -54,14 +55,17 @@ export class MainMenuPage {
       fuelSupply.fuelled = data.fuelled;
       fuelSupply.gas_station_id = this.gasStation.id;
       fuelSupply.value = data.value;
-      fuelSupply.user_id = this.userData.currentUser.id;
-      this.fuelSupplyService.create(fuelSupply)
+      this.fuelSupplyService.create(this.userData.currentUser, fuelSupply)
       .then(fuelSupply => {
 
       })
       .catch(error => console.log(JSON.stringify(error)))
     });
     modal.present();
+  }
+
+  goToFuelSupplyHistory() {
+    this.navCtrl.setRoot(FuelSupplyHistoryPage);
   }
 
 }

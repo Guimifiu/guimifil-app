@@ -103,10 +103,9 @@ export class AtGasStationPage {
       } else if(typeAttribute === 'diesel_price') {
         priceSuggestion.fuel_type = 'diesel'
       }
-      priceSuggestion.user_id = this.userData.currentUser.id;
       priceSuggestion.gas_station_id = this.gasStation.id;
       priceSuggestion.value = parseFloat(value);
-      this.priceSuggestionService.create(priceSuggestion)
+      this.priceSuggestionService.create(this.userData.currentUser, priceSuggestion)
       .then(priceSuggestion => {
 
       })

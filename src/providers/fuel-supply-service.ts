@@ -5,19 +5,20 @@ import 'rxjs/add/operator/map';
 import { ENV } from '../config/environment-development';
 import { API } from '../config/guimifiu-api';
 import { FuelSupply } from '../models/fuel-supply';
+import { User } from '../models/user';
 
 @Injectable()
 export class FuelSupplyService {
 
-  endpoint = ENV.API_URL + 'fuel_supplies/';
+  endpoint = ENV.API_URL + 'users/';
 
   constructor(public http: Http) {
     console.log('Hello GasStation Provider');
   }
 
-  create(fuelSupply: FuelSupply): Promise<FuelSupply> {
+  create(user: User, fuelSupply: FuelSupply): Promise<FuelSupply> {
     return new Promise((resolve, reject) => {
-      let url = this.endpoint
+      let url = this.endpoint + user.id + '/fuel_supplies'
       let body = { 'fuel_supply': fuelSupply }
       console.log('url:' + url);
       console.log('body:' + JSON.stringify(body));
