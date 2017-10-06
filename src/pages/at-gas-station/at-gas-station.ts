@@ -27,8 +27,12 @@ export class AtGasStationPage {
     this.gasStation = this.navParams.data.gasStation;
   }
 
-  dismiss(answer: boolean) {
-    this.viewCtrl.dismiss(answer);
+  dismiss(answer: boolean, value?: string) {
+    var data = {
+      fuelled: answer,
+      value: parseFloat(value)
+    }
+    this.viewCtrl.dismiss(data);
   }
 
   presentEditPriceAlert(typeAttribute: string) {
@@ -58,6 +62,34 @@ export class AtGasStationPage {
       });
       alert.present();
   }
+
+  presentSupplyValueAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Quanto está abastecendo?',
+      inputs: [
+        {
+          name: 'value',
+          placeholder: "0.00",
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Salvar',
+          handler: data => {
+            this.dismiss(true, data.value)
+          }
+        }
+      ]
+    });
+    alert.present();
+}
 
   createPriceSuggestion(typeAttribute: string, value: string) {
     console.log(value)
