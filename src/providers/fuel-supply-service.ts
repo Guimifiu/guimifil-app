@@ -16,9 +16,9 @@ export class FuelSupplyService {
     console.log('Hello GasStation Provider');
   }
 
-  getAll(user: User): Promise<FuelSupply[]> {
+  getAll(user: User, monthYear: String): Promise<FuelSupply[]> {
     return new Promise((resolve, reject) => {
-      let url = this.endpoint + user.id + '/fuel_supplies'
+      let url = this.endpoint + user.id + '/fuel_supplies?month_year=' + monthYear
       console.log('url:' + url);
       this.http
         .get(url, API.options)
@@ -27,6 +27,21 @@ export class FuelSupplyService {
           data => resolve(data as FuelSupply[]),
           error => reject(error),
           () => console.log("Got user fuel supplies")
+        );
+    });
+  }
+
+  historyMonths(user: User): Promise<String[]> {
+    return new Promise((resolve, reject) => {
+      let url = this.endpoint + user.id + '/fuel_supplies/history_months'
+      console.log('url:' + url);
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as String[]),
+          error => reject(error),
+          () => console.log("Got history months of fuel supplies")
         );
     });
   }
