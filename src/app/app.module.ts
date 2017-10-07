@@ -14,6 +14,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { AtGasStationPage } from '../pages/at-gas-station/at-gas-station';
+import { FuelSupplyCreationPage } from '../pages/fuel-supply-creation/fuel-supply-creation';
 import { FuelSupplyDetailsPage } from '../pages/fuel-supply-details/fuel-supply-details';
 import { FuelSupplyHistoryPage } from '../pages/fuel-supply-history/fuel-supply-history';
 import { SearchPlaceBarComponent } from '../components/search-place-bar/search-place-bar';
@@ -27,6 +28,8 @@ import { GoogleService } from '../providers/google-service';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Geocoder } from '@ionic-native/google-maps' 
+
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 
 @NgModule({
@@ -43,10 +46,12 @@ import { Geocoder } from '@ionic-native/google-maps'
     SearchPlaceBarComponent,
     AtGasStationPage,
     FuelSupplyHistoryPage,
+    FuelSupplyCreationPage,
     FuelSupplyDetailsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,6 +67,7 @@ import { Geocoder } from '@ionic-native/google-maps'
     SearchPlaceBarComponent,
     AtGasStationPage,
     FuelSupplyHistoryPage,
+    FuelSupplyCreationPage,
     FuelSupplyDetailsPage
   ],
   providers: [

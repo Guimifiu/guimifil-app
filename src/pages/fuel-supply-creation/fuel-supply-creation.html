@@ -1,0 +1,31 @@
+<ion-content padding no-bounce class="modal">
+    <div class="modal__title">Abastecimento</div>
+    <form [formGroup]="fuelSupplyForm" (ngSubmit)="onSubmit();">
+      <div class="modal__gas-station">
+        <div class="title"> {{gasStation.name}} </div>
+        <div class="subtitle"> {{gasStation.vicinity}} </div>
+          <ion-list class="prices">
+              <ion-item>
+                  Valor: <ion-input formControlName="fuel_supply_value" [class.invalid]="isNotEmpty(formErrors.fuel_supply_value)" placeholder="0.00" type="number"></ion-input>
+                  <div class="form__warning" *ngIf="isNotEmpty(formErrors.fuel_supply_value)">{{formErrors.fuel_supply_value[0]}}</div>
+              </ion-item>
+            <ion-item>
+              <ion-select formControlName="fuel_type" [class.invalid]="isNotEmpty(formErrors.fuel_type)">
+                  <ion-option *ngFor="let fuelType of fuelTypes; let i = index" [selected]="i == 0" value="{{fuelType.description}}">{{fuelType.translation}}</ion-option>
+                  <div class="form__warning" *ngIf="isNotEmpty(formErrors.fuel_type)">{{formErrors.fuel_type[0]}}</div>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+              <div [class.invalid]="isNotEmpty(formErrors.gas_station_rate)">
+                <rating formControlName="gas_station_rate" readOnly="false" max="5" emptyStarIconName="star-outline" starIconName="star" nullable="false">
+                </rating>
+              </div>
+            </ion-item>
+          </ion-list>
+      </div>
+      <div class="modal__answer">
+        <button class="button" (click)="dismiss();" type="button"> Voltar </button>
+        <button ion-button class="button" type="submit"> Salvar </button>
+      </div> 
+    </form>
+  </ion-content>

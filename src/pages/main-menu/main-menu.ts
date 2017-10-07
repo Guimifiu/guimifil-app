@@ -3,8 +3,10 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AuthenticationService } from '../../providers/authentication-service';
 import { FuelSupplyService } from '../../providers/fuel-supply-service'; //TODO delete it (just for testing)
+import { RatingService } from '../../providers/rating-service'; //TODO delete it (just for testing)
 import { GasStation } from '../../models/gas-station'; //TODO delete it (just for testing)
 import { FuelSupply } from '../../models/fuel-supply'; //TODO delete it (just for testing)
+import { Rating } from '../../models/rating'; //TODO delete it (just for testing)
 import { AtGasStationPage } from '../at-gas-station/at-gas-station';
 import { LoginPage } from '../login/login';
 import { FuelSupplyHistoryPage } from '../fuel-supply-history/fuel-supply-history';
@@ -16,7 +18,8 @@ import { UserData } from '../../providers/user-data'; //TODO delete it (just for
   templateUrl: 'main-menu.html',
   providers: [
     AuthenticationService, 
-    FuelSupplyService //TODO delete it (just for testing)
+    FuelSupplyService, //TODO delete it (just for testing)
+    RatingService //TODO delete it (just for testing)
   ]
 })
 export class MainMenuPage {
@@ -30,6 +33,7 @@ export class MainMenuPage {
     public modalCtrl: ModalController, //TODO delete it (just for testing)
     public userData: UserData, //TODO delete it (just for testing)
     public fuelSupplyService: FuelSupplyService, //TODO delete it (just for testing)
+    public ratingService: RatingService, //TODO delete it (just for testing)
   ) {
     this.gasStation.id = 41; //TODO delete it (just for testing)
     this.gasStation.latitude = "-16.01664"; //TODO delete it (just for testing)
@@ -54,10 +58,19 @@ export class MainMenuPage {
       fuelSupply.boycotted = false; //TODO get if gas station is boycotted
       fuelSupply.fuelled = data.fuelled;
       fuelSupply.gas_station_id = this.gasStation.id;
-      fuelSupply.value = data.value;
+      if(data.formData) {
+        fuelSupply.value = data.formData.fuel_supply_value;
+        fuelSupply.fuel_type = data.formData.fuel_type;
+      }
       this.fuelSupplyService.create(this.userData.currentUser, fuelSupply)
       .then(fuelSupply => {
-
+        if(data.formData) {
+          var rating = new Rating();
+          rating.stars = data.formData.gas_station_rate;
+          rating.gas_station_id = this.gasStation.id;
+          this.ratingService.create(this.userData.currentUser, rating)
+          .then(rating => console.log(JSON.stringify(rating)))
+        }
       })
       .catch(error => console.log(JSON.stringify(error)))
     });

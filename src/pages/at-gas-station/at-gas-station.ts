@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, ViewController, AlertController} from 'ionic-angular';
 
 import { GasStation } from '../../models/gas-station'
+import { FuelSupply } from '../../models/fuel-supply'
+import { Rating } from '../../models/rating'
 import { PriceSuggestion } from '../../models/price-suggestion'
 import { PriceSuggestionService } from '../../providers/price-suggestion-service'
 import { UserData } from '../../providers/user-data';
+import { FuelSupplyCreationPage } from '../fuel-supply-creation/fuel-supply-creation';
 
 @Component({
   selector: 'at-gas-station-page',
@@ -27,10 +30,10 @@ export class AtGasStationPage {
     this.gasStation = this.navParams.data.gasStation;
   }
 
-  dismiss(answer: boolean, value?: string) {
+  dismiss(answer: boolean, formData?) {
     var data = {
       fuelled: answer,
-      value: parseFloat(value)
+      formData: formData
     }
     this.viewCtrl.dismiss(data);
   }
@@ -63,36 +66,44 @@ export class AtGasStationPage {
       alert.present();
   }
 
-  presentSupplyValueAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'Quanto está abastecendo?',
-      inputs: [
-        {
-          name: 'value',
-          placeholder: "0.00",
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Salvar',
-          handler: data => {
-            this.dismiss(true, data.value)
-          }
-        }
-      ]
+  presentFuelSupplyCreationPage() {
+    let modal = this.modalCtrl.create(FuelSupplyCreationPage, { "gasStation": this.gasStation });
+    modal.onDidDismiss(data => {
+      if(data.formData) {
+        this.dismiss(true, data.formData);
+      }
     });
-    alert.present();
-}
+    modal.present();
+  }
+  // presentSupplyValueAlert() {
+  //   const alert = this.alertCtrl.create({
+  //     title: 'Quanto está abastecendo?',
+  //     inputs: [
+  //       {
+  //         name: 'value',
+  //         placeholder: "0.00",
+  //       },
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancelar',
+  //         role: 'cancel',
+  //         handler: data => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Salvar',
+  //         handler: data => {
+  //           this.dismiss(true, data.value)
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
 
   createPriceSuggestion(typeAttribute: string, value: string) {
-    console.log(value)
     if(value != '') {
       this.gasStation[typeAttribute] = parseFloat(value);
       var priceSuggestion = new PriceSuggestion;

@@ -8,6 +8,7 @@ export class FuelSupply {
     boycotted: boolean;
     date: string;
     gas_station_name: string;
+    fuel_type: string;
     
     constructor() {}
   }
