@@ -22,8 +22,26 @@ import { FacebookService } from '../providers/facebook-service';
 import { GoogleService } from '../providers/google-service';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { Geocoder } from '@ionic-native/google-maps' 
+import { Geocoder } from '@ionic-native/google-maps';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular'; 
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '287910474973285',
+  },
+  'push': {
+    'sender_id': '1964421970',
+    'pluginConfig': {
+      'ios': {
+        'badge': true,
+        'sound': true
+      },
+      'android': {
+        'iconColor': '#343434'
+      }
+    }
+  }
+};
 
 @NgModule({
   declarations: [
@@ -39,7 +57,8 @@ import { Geocoder } from '@ionic-native/google-maps'
     SearchPlaceBarComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

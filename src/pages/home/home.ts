@@ -66,7 +66,7 @@ export class HomePage {
 
     getClosestGasStations() {
       this.mapService.currentMap.clear();
-      this.loadingService.showLoading('Carregando Postos...');
+      // this.loadingService.showLoading('Carregando Postos...');
       this.mapService
         .getCurrentPosition()
         .then(currentPosition => {
@@ -190,14 +190,8 @@ export class HomePage {
           id:             gasStation.id, //any unique ID
           latitude:       parseFloat(gasStation.latitude), //center of geofence radius
           longitude:      parseFloat(gasStation.longitude),
-          radius:         5000,
+          radius:         1200,
           transitionType: 1,
-          notification: {
-              id:             gasStation.id, //any unique ID
-              title:          'Está abastecendo?',
-              text:           'Você entrou no posto ' + gasStation.name + ', está abastecendo nele?',
-              openAppOnClick: true
-          }
       }
 
       this.geofence.addOrUpdate(fence).then(

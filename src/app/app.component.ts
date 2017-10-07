@@ -7,6 +7,10 @@ import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
 import { LoginPage } from '../pages/login/login';
 import { UserData } from '../providers/user-data';
 import { User } from '../models/user';
+import {
+  Push,
+  PushToken
+} from '@ionic/cloud-angular';
 
 @Component({
   template: `<ion-nav #nav [root]="rootPage"></ion-nav>`
@@ -20,6 +24,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private userData: UserData,
+    public push: Push
   ) {
     platform
       .ready()
@@ -36,6 +41,19 @@ export class MyApp {
 
         statusBar.styleDefault();
         splashScreen.hide();
+        this.push.register().then((t: PushToken) => {
+          return this.push.saveToken(t);
+        }).then((t: PushToken) => {
+          console.log('Token saved:', t.token);
+        this.push.rx.notification()
+        .subscribe((msg) => {
+          alert(msg.title + ': ' + msg.text);
+        });
+
+
+});
+
+
     });
   }
 }
