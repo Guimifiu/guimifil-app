@@ -44,6 +44,7 @@ export class MainMenuPage {
     this.gasStation.gas_price = 1.0; //TODO delete it (just for testing)
     this.gasStation.diesel_price = 1.0; //TODO delete it (just for testing)
     this.gasStation.alcohol_price = 1.0; //TODO delete it (just for testing)
+    this.gasStation.reputation = 4.10; //TODO delete it (just for testing)
   }
 
   logout() {
@@ -68,6 +69,7 @@ export class MainMenuPage {
           var rating = new Rating();
           rating.stars = data.formData.gas_station_rate;
           rating.gas_station_id = this.gasStation.id;
+          rating.fuel_supply_id = fuelSupply.id;
           this.ratingService.create(this.userData.currentUser, rating)
           .then(rating => console.log(JSON.stringify(rating)))
         }

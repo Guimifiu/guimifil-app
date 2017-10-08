@@ -9,6 +9,8 @@ export class GasStation {
   gas_price: number;
   alcohol_price: number;
   diesel_price: number;
+  reputation: number;
+  gas_station_vicinity: string;
 
   constructor() {
 

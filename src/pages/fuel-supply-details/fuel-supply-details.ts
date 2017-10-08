@@ -16,6 +16,8 @@ export class FuelSupplyDetailsPage {
 
   gasStation = new GasStation;
   fuelSupply = new FuelSupply;
+  stars = [];
+  emptyStars = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -27,6 +29,21 @@ export class FuelSupplyDetailsPage {
     public alertCtrl: AlertController,
   ) {
     this.fuelSupply = this.navParams.data.fuelSupply;
+    this.getFuelSupplyRating();
+  }
+
+  getFuelSupplyRating() {
+    if(this.fuelSupply.rating_stars === null) {
+      this.emptyStars.length = 5;
+    } else {
+      let reputation = Math.floor(this.fuelSupply.rating_stars);
+      for (var _i = 0; _i < reputation; _i++) {
+        this.stars[_i] = _i
+      }
+      for (var _n = 0; _n < (5 - reputation); _n++) {
+        this.emptyStars[_n] = _n;
+      }
+    }
   }
 
   dismiss() {

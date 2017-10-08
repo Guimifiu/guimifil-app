@@ -17,6 +17,8 @@ import { FuelSupplyCreationPage } from '../fuel-supply-creation/fuel-supply-crea
 export class AtGasStationPage {
 
   gasStation = new GasStation;
+  stars = [];
+  emptyStars = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -28,8 +30,23 @@ export class AtGasStationPage {
     public alertCtrl: AlertController,
   ) {
     this.gasStation = this.navParams.data.gasStation;
+    this.getGasStationStars();
   }
 
+  getGasStationStars() {
+    if(this.gasStation.reputation === null) {
+      this.emptyStars.length = 5;
+    } else {
+      let reputation = Math.floor(this.gasStation.reputation);
+      for (var _i = 0; _i < reputation; _i++) {
+        this.stars[_i] = _i
+      }
+      for (var _n = 0; _n < (5 - reputation); _n++) {
+        this.emptyStars[_n] = _n;
+      }
+    }
+  }
+  
   dismiss(answer: boolean, formData?) {
     var data = {
       fuelled: answer,

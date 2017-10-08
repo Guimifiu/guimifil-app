@@ -1,4 +1,5 @@
 at-gas-station-page {
+
   .modal {
 
   }
@@ -24,6 +25,28 @@ at-gas-station-page {
       .edit-icon {
         float: right;
       }
+    }
+
+    .stars {
+      margin-top: 5%;
+      .reputation {
+        font-size: 11px;
+      }
+    }
+
+    .star, .small-star-empty {
+      display: inline-block;
+      height: 17px;
+      width: 17px;
+      background: url("../../assets/images/star.svg");
+      background-size: cover;
+      // background-color: black;
+      margin: 1px;
+    }
+    .small-star-empty {
+      background: url("../../assets/images/empty-star.svg");
+      background-size: cover;
+      // background-color: blue;
     }
   }
 
