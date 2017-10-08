@@ -1,0 +1,22 @@
+<ion-content padding no-bounce class="modal">
+  <div class="modal__title">Você está abastecendo?</div>
+  <div class="modal__gas-station">
+    <div class="title"> {{gasStation.name}} </div>
+    <div class="subtitle"> {{gasStation.vicinity}} </div>
+    <div class="stars">
+      <div class='star' *ngFor="let star of stars"></div>
+      <div class='small-star-empty' *ngFor="let emptyStar of emptyStars"></div>
+      <div class="reputation" *ngIf='gasStation.reputation'> {{gasStation.reputation.toFixed(2)}} </div>
+      <div class="reputation" *ngIf='!gasStation.reputation'> Sem avaliações </div>
+    </div>
+    <ion-list class="prices">
+      <ion-item>Gasolina: R$ {{gasStation.gas_price.toFixed(2)}} <ion-icon (click)="presentEditPriceAlert('gas_price')" class="edit-icon" name="md-create"></ion-icon></ion-item>
+      <ion-item>Álcool: R$ {{gasStation.alcohol_price.toFixed(2)}} <ion-icon (click)="presentEditPriceAlert('alcohol_price')" class="edit-icon" name="md-create"></ion-icon></ion-item>
+      <ion-item>Diesel: R$ {{gasStation.diesel_price.toFixed(2)}} <ion-icon (click)="presentEditPriceAlert('diesel_price')" class="edit-icon" name="md-create"></ion-icon></ion-item>
+    </ion-list>
+  </div>
+  <div class="modal__answer">
+    <button class="button" (click)="presentFuelSupplyCreationPage();"> Sim </button>
+    <button class="button" (click)="dismiss(false);"> Não </button>
+  </div> 
+</ion-content>

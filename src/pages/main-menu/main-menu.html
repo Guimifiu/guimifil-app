@@ -10,8 +10,14 @@
   <ion-list>
     <ion-item-group>
       <ion-item>
+        <button ion-item (click)="goToFuelSupplyHistory()">
+            <ion-icon name="md-list"> </ion-icon> Lista de abastecimentos
+        </button>
         <button ion-item (click)="logout()">
-          <ion-icon name="contact"> </ion-icon> Logout
+            <ion-icon name="contact"> </ion-icon> Logout
+        </button>
+        <button ion-item (click)="areYouAtGasStation()">
+          <ion-icon name="contact"> </ion-icon> Você está no posto?
         </button>
       </ion-item>
     </ion-item-group>

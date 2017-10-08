@@ -13,17 +13,23 @@ import { MenuSidePage } from '../pages/menu-side/menu-side';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
+import { AtGasStationPage } from '../pages/at-gas-station/at-gas-station';
+import { FuelSupplyCreationPage } from '../pages/fuel-supply-creation/fuel-supply-creation';
+import { FuelSupplyDetailsPage } from '../pages/fuel-supply-details/fuel-supply-details';
+import { FuelSupplyHistoryPage } from '../pages/fuel-supply-history/fuel-supply-history';
 import { SearchPlaceBarComponent } from '../components/search-place-bar/search-place-bar';
 
 import { UserData } from '../providers/user-data';
 import { AuthenticationService } from '../providers/authentication-service';
 import { UserService } from '../providers/user-service';
+import { PriceSuggestionService } from '../providers/price-suggestion-service';
 import { FacebookService } from '../providers/facebook-service';
 import { GoogleService } from '../providers/google-service';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Geocoder } from '@ionic-native/google-maps';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular'; 
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -43,6 +49,7 @@ const cloudSettings: CloudSettings = {
   }
 };
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -54,11 +61,16 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     RegisterPage,
     MainMenuPage,
-    SearchPlaceBarComponent
+    SearchPlaceBarComponent,
+    AtGasStationPage,
+    FuelSupplyHistoryPage,
+    FuelSupplyCreationPage,
+    FuelSupplyDetailsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,7 +83,11 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     RegisterPage,
     MainMenuPage,
-    SearchPlaceBarComponent
+    SearchPlaceBarComponent,
+    AtGasStationPage,
+    FuelSupplyHistoryPage,
+    FuelSupplyCreationPage,
+    FuelSupplyDetailsPage
   ],
   providers: [
     StatusBar,
@@ -85,6 +101,7 @@ const cloudSettings: CloudSettings = {
     Facebook,
     GooglePlus,
     Geocoder,
+    PriceSuggestionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

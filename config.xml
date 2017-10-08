@@ -95,6 +95,8 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="UseLegacySwiftLanguageVersion" value="true"/>
+    <preference name="swift-version" value="3.0"/>
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -107,7 +109,7 @@
         <variable name="APP_ID" value="287910474973285" />
         <variable name="APP_NAME" value="Guimifiu" />
     </plugin>
-    <plugin name="cordova-plugin-geofence" spec="^0.7.0">
+  <plugin name="cordova-plugin-geofence" spec="git+https://github.com/Baadier-Sydow/cordova-plugin-geofence.git">
         <variable name="GEOFENCE_ALWAYS_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background." />
         <variable name="GEOFENCE_IN_USE_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use." />
     </plugin>

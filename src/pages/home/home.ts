@@ -48,7 +48,8 @@ export class HomePage {
       private geofence: Geofence
     ){
       platform.ready().then(() => {
-          this.loadMap()
+          this.loadMap();
+          this.configMap();
       });
       geofence.initialize().then(
         // resolved promise does not return a value
@@ -57,7 +58,7 @@ export class HomePage {
       )
     }
 
-    ngOnInit(){
+    configMap(){
       if(this.map != null)
         this.map.setClickable(true);
       if(this.mapService.currentMap != null)
@@ -86,8 +87,12 @@ export class HomePage {
       }
 
     createGeofences(gasStations){
-      for(var i in gasStations){
-        this.addGeofence(gasStations[i]);
+      var count = 0;
+      for(var i in gasStations) {
+        if(count < 9) {
+          this.addGeofence(gasStations[i]);
+        }
+        count++;
       }
     }
 
@@ -142,7 +147,7 @@ export class HomePage {
       let mapElement: HTMLElement = document.getElementById('map');
       this.map = new GoogleMap(mapElement, mapOptions);
       this.mapService.currentMap = this.map;
-      this.getClosestGasStations();
+
 
       this.map.one(GoogleMapsEvent.MAP_READY)
       .then( () => {

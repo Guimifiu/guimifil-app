@@ -1,0 +1,21 @@
+<ion-content padding no-bounce class="modal">
+  <div class="modal__title">Abastecimento</div>
+  <div class="modal__gas-station">
+    <div class="title"> {{fuelSupply.gas_station_name}} </div>
+    <div class="subtitle"> {{fuelSupply.gas_station_vicinity}} </div>
+    <div class="subtitle"> {{fuelSupply.date}} </div>
+    <div class="stars">
+      <div class='star' *ngFor="let star of stars"></div>
+      <div class='small-star-empty' *ngFor="let emptyStar of emptyStars"></div>
+      <div class="reputation" *ngIf='!fuelSupply.rating_stars'> Você não avaliou </div>
+    </div>
+    <ion-list class="prices">
+      <ion-item *ngIf='fuelSupply.value'>Preço: {{parseFuelSupplyValue(fuelSupply.value)}}</ion-item>
+      <ion-item *ngIf='!fuelSupply.value'>Não abasteceu</ion-item>
+      <ion-item *ngIf='fuelSupply.fuel_type_translated'>Tipo: {{fuelSupply.fuel_type_translated}}</ion-item>
+    </ion-list>
+  </div>
+  <div class="modal__answer">
+    <button class="button" (click)="dismiss();"> Fechar </button>
+  </div> 
+</ion-content>
