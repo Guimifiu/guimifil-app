@@ -35,7 +35,7 @@ export class MainMenuPage {
     public fuelSupplyService: FuelSupplyService, //TODO delete it (just for testing)
     public ratingService: RatingService, //TODO delete it (just for testing)
   ) {
-    this.gasStation.id = 41; //TODO delete it (just for testing)
+    this.gasStation.id = 1; //TODO delete it (just for testing)
     this.gasStation.latitude = "-16.01664"; //TODO delete it (just for testing)
     this.gasStation.longitude = "-48.062984"; //TODO delete it (just for testing)
     this.gasStation.google_maps_id = "ChIJg4Kc9wyAWZMRC30jT567Fp0"; //TODO delete it (just for testing)
