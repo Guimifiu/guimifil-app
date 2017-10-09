@@ -68,11 +68,10 @@ export class HomePage {
     getClosestGasStations() {
       this.mapService.currentMap.clear();
       this.loadingService.showLoading('Carregando Postos...');
-      this.mapService
-        .getCurrentPosition()
+      this.getUserCurrentLocation()
         .then(currentPosition => {
-          let lat = currentPosition.latLng.lat
-          let lng = currentPosition.latLng.lng
+          let lat = currentPosition['lat'];
+          let lng = currentPosition['lng'];
           this.gasStationService
           .getClosestGasStations(lat, lng)
           .then(gasStations => {
@@ -116,16 +115,16 @@ export class HomePage {
       }
     }
 
-    // getUserCurrentLocation(): Promise<LatLng> {
-    //   return this.geolocation.
-    //     getCurrentPosition().
-    //     then((response) => {
-    //       let location = new LatLng(response.coords.latitude, response.coords.longitude);
-    //       return location;
-    //     }).catch((error) => {
-    //       console.log('Error getting location', error);
-    //   });
-    // }
+    getUserCurrentLocation() {
+      return this.geolocation.
+        getCurrentPosition().
+        then((response) => {
+          let location = new LatLng(response.coords.latitude, response.coords.longitude);
+          return location;
+        }).catch((error) => {
+          console.log('Error getting location', error);
+      });
+    }
 
     loadMap(){
       let mapOptions = {
