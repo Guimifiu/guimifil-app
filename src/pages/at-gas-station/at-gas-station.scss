@@ -38,15 +38,13 @@ at-gas-station-page {
       display: inline-block;
       height: 17px;
       width: 17px;
-      background: url("../../assets/images/star.svg");
+      background-image: url('../assets/images/star.svg');
       background-size: cover;
-      // background-color: black;
       margin: 1px;
     }
     .small-star-empty {
-      background: url("../../assets/images/empty-star.svg");
+      background-image: url('../assets/images/empty-star.svg');
       background-size: cover;
-      // background-color: blue;
     }
   }
 

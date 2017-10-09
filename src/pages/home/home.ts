@@ -102,7 +102,7 @@ export class HomePage {
           position: location,
           snippet: gasStations[i].vicinity,
           title: gasStations[i].name,
-          icon: { url : 'assets/images/pump_map.png', size: { height: 40, width: 25 } },
+          icon: { url : './assets/images/pump_map.png', size: { height: 40, width: 25 } },
           infoClick: () => {
             alert("Informações do posto");
           }
