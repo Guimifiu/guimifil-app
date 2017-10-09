@@ -34,26 +34,11 @@ export class MyApp {
         .then(user => {
           this.userData.login(user);
           this.rootPage = MenuTabsPage;
+          this.userData.registerToPushNotification();
         })
         .catch(() => {
           this.rootPage = LoginPage;
         })
-
-        statusBar.styleDefault();
-        splashScreen.hide();
-        this.push.register().then((t: PushToken) => {
-          return this.push.saveToken(t);
-        }).then((t: PushToken) => {
-          console.log('Token saved:', t.token);
-        this.push.rx.notification()
-        .subscribe((msg) => {
-          alert(msg.title + ': ' + msg.text);
-        });
-
-
-});
-
-
     });
   }
 }

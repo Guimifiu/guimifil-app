@@ -14,11 +14,18 @@ import { Geofence } from '@ionic-native/geofence';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { GasStationService } from '../../providers/gas-station-service';
+import { FirebasePushService } from '../../providers/firebase-push-service';
 import { MapService } from '../../providers/map-service';
 import { LoadingService } from '../../providers/loading-service';
 import { GasStation } from '../../models/gas-station';
 import { Place } from '../../models/place';
 import { SearchPlacePage } from '../search-place/search-place';
+import { FuelSupply } from '../../models/fuel-supply';
+import { AtGasStationPage } from '../at-gas-station/at-gas-station';
+import { FuelSupplyService } from '../../providers/fuel-supply-service';
+import { UserData } from '../../providers/user-data';
+import { RatingService } from '../../providers/rating-service';
+import { Rating } from '../../models/rating';
 
 @Component({
   selector: 'home-page',
@@ -29,7 +36,10 @@ import { SearchPlacePage } from '../search-place/search-place';
     LoadingService,
     Geolocation,
     MapService,
-    Geofence
+    Geofence,
+    FuelSupplyService,
+    RatingService,
+    FirebasePushService
   ]
 })
 
@@ -45,7 +55,12 @@ export class HomePage {
       private geolocation: Geolocation,
       private modalController: ModalController,
       private mapService: MapService,
-      private geofence: Geofence
+      private geofence: Geofence,
+      public modalCtrl: ModalController,
+      public fuelSupplyService: FuelSupplyService,
+      public userData: UserData,
+      public ratingService: RatingService,
+      public firebasePushService: FirebasePushService
     ){
       platform.ready().then(() => {
           this.loadMap();
@@ -187,9 +202,6 @@ export class HomePage {
         })
     }
     private addGeofence(gasStation) {
-      console.log(JSON.stringify(gasStation))
-      console.log(parseFloat(gasStation.latitude));
-      console.log(parseFloat(gasStation.longitude));
       let fence = {
           id:             gasStation.id, //any unique ID
           latitude:       parseFloat(gasStation.latitude), //center of geofence radius
@@ -202,5 +214,45 @@ export class HomePage {
          () => console.log('Geofence added'),
          (err) => console.log('Geofence failed to add')
        );
+
+       this.geofence.onTransitionReceived().subscribe(resp => {
+         this.gasStationService.getGasStation(resp[0].id)
+          .then(gasStation => {
+            this.firebasePushService.atGasStationNotification(this.userData.currentUser, gasStation);
+            this.presentAtGasStationPage(gasStation);
+          }).catch(error => console.log(JSON.stringify(error)))
+       });
    }
+
+   presentAtGasStationPage(gasStation: GasStation) {
+     console.log("PASSOU AQUI TAMBEM");
+    let modal = this.modalCtrl.create(AtGasStationPage, { "gasStation": gasStation });
+    modal.onDidDismiss(data => {
+      var fuelSupply = new FuelSupply();
+      fuelSupply.boycotted = false; //TODO get if gas station is boycotted
+      fuelSupply.fuelled = data.fuelled;
+      fuelSupply.gas_station_id = gasStation.id;
+      if(data.formData) {
+        fuelSupply.value = data.formData.fuel_supply_value;
+        fuelSupply.fuel_type = data.formData.fuel_type;
+      }
+      this.fuelSupplyService.create(this.userData.currentUser, fuelSupply)
+      .then(fuelSupply => {
+        if(data.formData) {
+          var rating = new Rating();
+          rating.stars = data.formData.gas_station_rate;
+          rating.gas_station_id = gasStation.id;
+          rating.fuel_supply_id = fuelSupply.id;
+          this.ratingService.create(this.userData.currentUser, rating)
+          .then(rating => console.log(JSON.stringify(rating)))
+        }
+      })
+      .catch(error => console.log(JSON.stringify(error)))
+      // .then(() => this.mapService.enableMap());
+    });
+    this.mapService.disableMap();
+    modal.present();
+  }
+
+   
 }

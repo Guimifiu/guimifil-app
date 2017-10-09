@@ -10,6 +10,7 @@ export class User {
   uid: string;
   oauth_token: string;
   photo:any;
+  device_token;
 
   constructor() {
 

@@ -141,4 +141,8 @@ export class AtGasStationPage {
     }
   }
 
+  parseFloatValue(value) {
+    return parseFloat(value).toFixed(2);
+  }
+
 }

@@ -25,6 +25,8 @@ import { UserService } from '../providers/user-service';
 import { PriceSuggestionService } from '../providers/price-suggestion-service';
 import { FacebookService } from '../providers/facebook-service';
 import { GoogleService } from '../providers/google-service';
+import { ToastService } from '../providers/toast-service';
+
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Geocoder } from '@ionic-native/google-maps';
@@ -96,6 +98,7 @@ const cloudSettings: CloudSettings = {
     UserData,
     AuthenticationService,
     UserService,
+    ToastService,    
     FacebookService,
     GoogleService,
     Facebook,
