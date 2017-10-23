@@ -103,7 +103,7 @@ export class HomePage {
     createGeofences(gasStations){
       var count = 0;
       for(var i in gasStations) {
-        if(count < 9) {
+        if(count < 50) {
           this.addGeofence(gasStations[i]);
         }
         count++;
@@ -203,8 +203,8 @@ export class HomePage {
     }
     private addGeofence(gasStation) {
       let fence = {
-          id:             gasStation.id, //any unique ID
-          latitude:       parseFloat(gasStation.latitude), //center of geofence radius
+          id:             gasStation.id,
+          latitude:       parseFloat(gasStation.latitude),
           longitude:      parseFloat(gasStation.longitude),
           radius:         1200,
           transitionType: 1,
@@ -248,11 +248,11 @@ export class HomePage {
         }
       })
       .catch(error => console.log(JSON.stringify(error)))
-      // .then(() => this.mapService.enableMap());
+      .then(() => this.mapService.enableMap());
     });
     this.mapService.disableMap();
     modal.present();
   }
 
-   
+
 }
