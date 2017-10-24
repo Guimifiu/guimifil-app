@@ -15,9 +15,11 @@ import { RegisterPage } from '../pages/register/register'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { AtGasStationPage } from '../pages/at-gas-station/at-gas-station';
 import { FuelSupplyCreationPage } from '../pages/fuel-supply-creation/fuel-supply-creation';
+import { SuppliesChartsPage } from '../pages/supplies-charts/supplies-charts';
 import { FuelSupplyDetailsPage } from '../pages/fuel-supply-details/fuel-supply-details';
 import { FuelSupplyHistoryPage } from '../pages/fuel-supply-history/fuel-supply-history';
 import { SearchPlaceBarComponent } from '../components/search-place-bar/search-place-bar';
+
 
 import { UserData } from '../providers/user-data';
 import { AuthenticationService } from '../providers/authentication-service';
@@ -67,7 +69,8 @@ const cloudSettings: CloudSettings = {
     AtGasStationPage,
     FuelSupplyHistoryPage,
     FuelSupplyCreationPage,
-    FuelSupplyDetailsPage
+    FuelSupplyDetailsPage,
+    SuppliesChartsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -89,7 +92,8 @@ const cloudSettings: CloudSettings = {
     AtGasStationPage,
     FuelSupplyHistoryPage,
     FuelSupplyCreationPage,
-    FuelSupplyDetailsPage
+    FuelSupplyDetailsPage,
+    SuppliesChartsPage
   ],
   providers: [
     StatusBar,

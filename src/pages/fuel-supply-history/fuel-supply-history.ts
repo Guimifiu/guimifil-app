@@ -8,6 +8,7 @@ import { FuelSupplyService } from '../../providers/fuel-supply-service';
 import { UserData } from '../../providers/user-data';
 import { ToastService } from '../../providers/toast-service';
 import { FuelSupplyDetailsPage } from '../fuel-supply-details/fuel-supply-details';
+import { SuppliesChartsPage } from '../supplies-charts/supplies-charts';
 import { Form } from '../../helpers/form';
 import { FormErrorMessages } from '../../validators/form-error-messages';
 
@@ -121,6 +122,10 @@ export class FuelSupplyHistoryPage extends Form{
     } else {
       this.markFormAsInvalid();
     }
+  }
+
+  goToSuppliesCharts() {
+    this.navCtrl.push(SuppliesChartsPage);
   }
 
 

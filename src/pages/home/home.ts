@@ -206,7 +206,7 @@ export class HomePage {
           id:             gasStation.id,
           latitude:       parseFloat(gasStation.latitude),
           longitude:      parseFloat(gasStation.longitude),
-          radius:         1200,
+          radius:         20,
           transitionType: 1,
       }
 

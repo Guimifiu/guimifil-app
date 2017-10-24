@@ -3,17 +3,18 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title> Guimifiu </ion-title>
+      <ion-title> Histórico de abastecimento </ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content>
     <ion-list>
-      <ion-list-header>Histórico de abastecimento</ion-list-header>
       <form [formGroup]="monthForm" (ngSubmit)="onSubmit();">
+        <div>
         <ion-select formControlName="historyMonth" (ionChange)='onSubmit();'>
             <ion-option *ngFor="let historyMonth of historyMonths; let i = index" [selected]="i == 0" value="{{historyMonth}}">{{historyMonth}}</ion-option>
         </ion-select>
+        </div>
       </form>
       <div>Total: R$ {{ getTotalSpent() }}</div>
       <div *ngFor="let fuelSupply of fuelSupplies">
@@ -25,5 +26,6 @@
         </ion-item>
       </div>
     </ion-list>
+    <h1 (click)="goToSuppliesCharts();">Ver gráficos</h1>
   </ion-content>
   
