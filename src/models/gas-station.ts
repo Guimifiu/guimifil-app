@@ -11,6 +11,7 @@ export class GasStation {
   diesel_price: number;
   reputation: number;
   gas_station_vicinity: string;
+  icon: string;
 
   constructor() {
 
