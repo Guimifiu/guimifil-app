@@ -138,4 +138,6 @@
     <plugin name="phonegap-plugin-push" spec="~2.0.0">
         <variable name="SENDER_ID" value="1964421970" />
     </plugin>
+    <allow-navigation href="http://192.168.1.116:8100" />
+    <allow-navigation href="http://192.168.1.104:8100" />
 </widget>
