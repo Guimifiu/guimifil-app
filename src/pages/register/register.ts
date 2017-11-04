@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, trigger,state, style, transition, animate } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,10 +13,22 @@ import { LoadingService } from '../../providers/loading-service';
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
-  providers: [ToastService, LoadingService]
+  providers: [ToastService, LoadingService],
+  animations: [
+      trigger('fadeIn', [
+      state('in', style({
+        transform: 'translate3d(0,0,0)'
+      })),
+      transition('void => *', [
+        style({transform: 'translate3d(0,2000px,0)'}),
+        animate('1000ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class RegisterPage extends Form {
 
+  loginState: any = "in";
   createSuccess = false;
   user = new User();
   registerForm: FormGroup;
