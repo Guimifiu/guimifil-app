@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, trigger, state, style, transition, animate } from '@angular/core';
 import { NavController, NavParams, ModalController, ViewController, AlertController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -15,10 +15,25 @@ import { ToastService } from '../../providers/toast-service';
   templateUrl: 'fuel-supply-creation.html',
   providers: [
     ToastService
+   ],
+
+   animations: [
+ 
+    //For the logo
+    trigger('flyInBottomSlow', [
+      state('in', style({
+        transform: 'translate3d(0,0,0)'
+      })),
+      transition('void => *', [
+        style({transform: 'translate3d(0,2000px,0'}),
+        animate('1000ms ease-in-out')
+      ])
+    ]),
    ]
 })
 export class FuelSupplyCreationPage extends Form{
 
+  logoState: any = "in";
   gasStation = new GasStation;
   fuelSupplyForm: FormGroup;
   fuelTypes = [
