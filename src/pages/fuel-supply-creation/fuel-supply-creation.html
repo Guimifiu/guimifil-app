@@ -1,4 +1,4 @@
-<ion-content padding no-bounce class="modal">
+<ion-content [@flyInBottomSlow]="logoState" padding no-bounce class="modal">
     <div class="modal__title">Abastecimento</div>
     <form [formGroup]="fuelSupplyForm" (ngSubmit)="onSubmit();">
       <div class="modal__gas-station">
@@ -23,9 +23,10 @@
             </ion-item>
           </ion-list>
       </div>
-      <div class="modal__answer">
-        <button class="button" (click)="dismiss();" type="button"> Voltar </button>
+      <div class="modal__answer"> 
         <button ion-button class="button" type="submit"> Salvar </button>
+        <br/><br/>
+        <button ion-button small color="light" class="button" (click)="dismiss();" type="button"> Voltar </button>
       </div> 
     </form>
   </ion-content>
