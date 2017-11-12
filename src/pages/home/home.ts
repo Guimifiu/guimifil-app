@@ -12,6 +12,7 @@ import {
 } from '@ionic-native/google-maps'
 import { Geofence } from '@ionic-native/geofence';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 import { GasStationService } from '../../providers/gas-station-service';
 import { FirebasePushService } from '../../providers/firebase-push-service';
@@ -39,7 +40,8 @@ import { Rating } from '../../models/rating';
     Geofence,
     FuelSupplyService,
     RatingService,
-    FirebasePushService
+    FirebasePushService,
+    LaunchNavigator
   ]
 })
 
@@ -60,7 +62,8 @@ export class HomePage {
       public fuelSupplyService: FuelSupplyService,
       public userData: UserData,
       public ratingService: RatingService,
-      public firebasePushService: FirebasePushService
+      public firebasePushService: FirebasePushService,
+      private launchNavigator: LaunchNavigator
     ){
       platform.ready().then(() => {
           this.loadMap();
@@ -115,11 +118,13 @@ export class HomePage {
         let location = new LatLng(parseFloat(gasStations[i].latitude), parseFloat(gasStations[i].longitude));
         let markerOptions: MarkerOptions = {
           position: location,
-          snippet: gasStations[i].vicinity,
+          // snippet: gasStations[i].vicinity,
+          snippet: "Clique para ir",
+          flat: true,
           title: gasStations[i].name,
           icon: { url : `./assets/images/${gasStations[i].icon}.png`, size: { height: 30, width: 25 } },
           infoClick: () => {
-            alert("Informações do posto");
+            this.openNavigationApps(gasStations[i]);
           }
         };
 
@@ -252,6 +257,18 @@ export class HomePage {
     });
     this.mapService.disableMap();
     modal.present();
+  }
+
+  openNavigationApps(gasStation) {
+    let options: LaunchNavigatorOptions = {
+      start: ''
+    };
+    let destination = [gasStation.latitude, gasStation.longitude]
+    this.launchNavigator.navigate(destination, options)
+    .then(
+      success => console.log('Launched navigator'),
+      error => console.log('Error launching navigator', error)
+    );
   }
 
 

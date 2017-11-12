@@ -3,9 +3,10 @@ import { MenuController, Tabs } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { UserProfilePage } from '../user-profile/user-profile';
-import { GasStationsListPage } from '../gas-stations-list/gas-stations-list';
+// import { GasStationsListPage } from '../gas-stations-list/gas-stations-list';
 import { MenuSidePage } from '../menu-side/menu-side';
 import { MainMenuPage } from '../main-menu/main-menu';
+import { FuelSupplyHistoryPage } from '../fuel-supply-history/fuel-supply-history';
 
 @Component({
   templateUrl: 'menu-tabs.html'
@@ -14,9 +15,10 @@ export class MenuTabsPage {
 
   homePage: any = HomePage;
   userProfilePage: any = UserProfilePage;
-  gasStationsListPage: any = GasStationsListPage;
+  // gasStationsListPage: any = GasStationsListPage;
   menuSidePage: any = MenuSidePage;
   mainMenuPage: any = MainMenuPage;
+  fuelSupplyHistoryPage: any = FuelSupplyHistoryPage
 
   @ViewChild('myTabs') tabRef: Tabs;
 

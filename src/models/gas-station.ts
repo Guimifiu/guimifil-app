@@ -12,6 +12,7 @@ export class GasStation {
   reputation: number;
   gas_station_vicinity: string;
   icon: string;
+  boycotted: boolean;
 
   constructor() {
 

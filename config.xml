@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.guimifiu" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.guimifiu" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>guimifiu-app</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -27,6 +27,10 @@
     <allow-navigation href="http://192.168.1.125:8100" />
     <allow-navigation href="http://192.168.1.4:8100" />
     <allow-navigation href="http://192.168.1.3:8100" />
+    <allow-navigation href="http://192.168.1.116:8100" />
+    <allow-navigation href="http://192.168.1.104:8100" />
+    <allow-navigation href="http://192.168.1.107:8100" />
+    <allow-navigation href="http://192.168.1.11:8100" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -138,7 +142,7 @@
     <plugin name="phonegap-plugin-push" spec="~2.0.0">
         <variable name="SENDER_ID" value="1964421970" />
     </plugin>
-    <allow-navigation href="http://192.168.1.116:8100" />
-    <allow-navigation href="http://192.168.1.104:8100" />
-    <allow-navigation href="http://192.168.1.107:8100" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.0.7">
+        <variable name="LOCATION_USAGE_DESCRIPTION" value="This app requires access to your location for navigation purposes" />
+    </plugin>
 </widget>
