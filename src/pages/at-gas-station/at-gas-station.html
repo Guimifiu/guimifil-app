@@ -1,4 +1,5 @@
 <ion-content padding no-bounce class="modal">
+  <div *ngIf="gasStation.boycotted" class="boycotted"> Boicotado </div>
   <div class="modal__title">Você está abastecendo?</div>
   <div class="modal__gas-station">
     <div class="title"> {{gasStation.name}} </div>

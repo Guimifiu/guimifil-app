@@ -120,7 +120,6 @@ export class HomePage {
           position: location,
           // snippet: gasStations[i].vicinity,
           snippet: "Clique para ir",
-          flat: true,
           title: gasStations[i].name,
           icon: { url : `./assets/images/${gasStations[i].icon}.png`, size: { height: 30, width: 25 } },
           infoClick: () => {
@@ -211,7 +210,7 @@ export class HomePage {
           id:             gasStation.id,
           latitude:       parseFloat(gasStation.latitude),
           longitude:      parseFloat(gasStation.longitude),
-          radius:         600,
+          radius:         30,
           transitionType: 1,
       }
 

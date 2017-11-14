@@ -35,7 +35,9 @@ export class GoogleService {
         user.provider = 'google'
         resolve(user);
       })
-      .catch(error => reject(error));
+      .catch(error => {
+        reject(error)}
+      );
     });
   }
 

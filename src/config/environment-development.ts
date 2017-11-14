@@ -1,5 +1,5 @@
 export const ENV = {
-  API_URL           : 'http://dd1f8f50.ngrok.io/api/v1/',
+  API_URL           : 'http://9f2b19ad.ngrok.io/api/v1/',
   API_TOKEN         : 'f91e20b036fd41ef906a88f843d2f103',
-  GOOGLE_APP_WEB_ID : '167308252367-r96b3ql35kgbvao01tj7em1easa49d6i.apps.googleusercontent.com',
+  GOOGLE_APP_WEB_ID : '1964421970-acssrlebii8i5pio9q4vb5ma4atscbdd.apps.googleusercontent.com',
 };

@@ -6,7 +6,7 @@
         <div class="subtitle"> {{gasStation.vicinity}} </div>
           <ion-list class="prices">
               <ion-item>
-                  Valor: <ion-input formControlName="fuel_supply_value" [class.invalid]="isNotEmpty(formErrors.fuel_supply_value)" placeholder="0.00" type="number"></ion-input>
+                  Valor: <ion-input formControlName="fuel_supply_value" [class.invalid]="isNotEmpty(formErrors.fuel_supply_value)" placeholder="R$ 0.00" type="number"></ion-input>
                   <div class="form__warning" *ngIf="isNotEmpty(formErrors.fuel_supply_value)">{{formErrors.fuel_supply_value[0]}}</div>
               </ion-item>
             <ion-item>

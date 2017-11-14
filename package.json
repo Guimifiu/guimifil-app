@@ -104,7 +104,7 @@
         "cordova-plugin-splashscreen"
     ],
     "cordovaPlatforms": [],
-    "description": "guimifiu-app: An Ionic project",
+    "description": "Guimifiu: An Ionic project",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},
