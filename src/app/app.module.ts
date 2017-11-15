@@ -18,6 +18,7 @@ import { FuelSupplyCreationPage } from '../pages/fuel-supply-creation/fuel-suppl
 import { SuppliesChartsPage } from '../pages/supplies-charts/supplies-charts';
 import { FuelSupplyDetailsPage } from '../pages/fuel-supply-details/fuel-supply-details';
 import { FuelSupplyHistoryPage } from '../pages/fuel-supply-history/fuel-supply-history';
+import { GasStationDetailsPage } from '../pages/gas-station-details/gas-station-details';
 import { SearchPlaceBarComponent } from '../components/search-place-bar/search-place-bar';
 
 
@@ -70,7 +71,8 @@ const cloudSettings: CloudSettings = {
     FuelSupplyHistoryPage,
     FuelSupplyCreationPage,
     FuelSupplyDetailsPage,
-    SuppliesChartsPage
+    SuppliesChartsPage,
+    GasStationDetailsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -93,7 +95,8 @@ const cloudSettings: CloudSettings = {
     FuelSupplyHistoryPage,
     FuelSupplyCreationPage,
     FuelSupplyDetailsPage,
-    SuppliesChartsPage
+    SuppliesChartsPage,
+    GasStationDetailsPage
   ],
   providers: [
     StatusBar,

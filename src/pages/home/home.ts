@@ -23,6 +23,7 @@ import { Place } from '../../models/place';
 import { SearchPlacePage } from '../search-place/search-place';
 import { FuelSupply } from '../../models/fuel-supply';
 import { AtGasStationPage } from '../at-gas-station/at-gas-station';
+import { GasStationDetailsPage } from '../gas-station-details/gas-station-details';
 import { FuelSupplyService } from '../../providers/fuel-supply-service';
 import { UserData } from '../../providers/user-data';
 import { RatingService } from '../../providers/rating-service';
@@ -119,11 +120,11 @@ export class HomePage {
         let markerOptions: MarkerOptions = {
           position: location,
           // snippet: gasStations[i].vicinity,
-          snippet: "Clique para ir",
+          snippet: "Toque para mais informação",
           title: gasStations[i].name,
           icon: { url : `./assets/images/${gasStations[i].icon}.png`, size: { height: 30, width: 25 } },
           infoClick: () => {
-            this.openNavigationApps(gasStations[i]);
+            this.presentGasStationDetailsPage(gasStations[i]);
           }
         };
 
@@ -258,16 +259,11 @@ export class HomePage {
     modal.present();
   }
 
-  openNavigationApps(gasStation) {
-    let options: LaunchNavigatorOptions = {
-      start: ''
-    };
-    let destination = [gasStation.latitude, gasStation.longitude]
-    this.launchNavigator.navigate(destination, options)
-    .then(
-      success => console.log('Launched navigator'),
-      error => console.log('Error launching navigator', error)
-    );
+  presentGasStationDetailsPage(gasStation) {
+    let modal = this.modalCtrl.create(GasStationDetailsPage, { "gasStation": gasStation });
+    modal.onDidDismiss(data => {
+    });
+    modal.present();
   }
 
 

@@ -119,5 +119,19 @@ export class MapService {
     });
   }
 
+  getDirection(originLat, originLng, destLat, destLng) : Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url =  `${ENV.API_URL}get-direction?origin=${originLat},${originLng}&destination=${destLat},${destLng}`
+      this.http
+        .get(url, API.options)
+        .map(res => res.json())
+        .subscribe(
+          data => resolve(data as any),
+          error => reject(error),
+          () => console.log("got direction")
+        );
+    });
+  }
+
 
 }
