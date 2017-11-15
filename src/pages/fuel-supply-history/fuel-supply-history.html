@@ -1,31 +1,43 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="dark">
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title> Histórico de abastecimento </ion-title>
+      <ion-title style="text-align:center;"> Histórico de abastecimento </ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content>
+    <form [formGroup]="monthForm" (ngSubmit)="onSubmit();">
+      <ion-list>
+        <ion-item>
+          <ion-label>Mês</ion-label>
+          <ion-select formControlName="historyMonth" (ionChange)='onSubmit();'>
+              <ion-option *ngFor="let historyMonth of historyMonths; let i = index" [selected]="i == 0" value="{{historyMonth}}">{{historyMonth}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </form>
+    <h3 style="text-align:center; color:gray">Total: R$ {{ getTotalSpent() }}</h3>
     <ion-list>
-      <form [formGroup]="monthForm" (ngSubmit)="onSubmit();">
-        <div>
-        <ion-select formControlName="historyMonth" (ionChange)='onSubmit();'>
-            <ion-option *ngFor="let historyMonth of historyMonths; let i = index" [selected]="i == 0" value="{{historyMonth}}">{{historyMonth}}</ion-option>
-        </ion-select>
-        </div>
-      </form>
-      <div>Total: R$ {{ getTotalSpent() }}</div>
       <div *ngFor="let fuelSupply of fuelSupplies">
         <ion-item (click)='presentFuelSupplyDetails(fuelSupply)'>
-          <div>{{fuelSupply.gas_station_name}}</div>
-          <div *ngIf='fuelSupply.value'>R$ {{parseFuelSupplyValue(fuelSupply.value)}}</div>
-          <div *ngIf='!fuelSupply.value'>Não abasteceu</div>
-          <div>{{fuelSupply.date}}</div>
+          <ion-thumbnail item-left>
+            <img src="{{'assets/images/' + fuelSupply.gas_station_icon + '.png'}}">
+          </ion-thumbnail>
+          <h2>{{fuelSupply.gas_station_name}}</h2>
+          <p *ngIf='fuelSupply.value'>R$ {{parseFuelSupplyValue(fuelSupply.value)}}</p>
+          <p *ngIf='!fuelSupply.value'>Não abasteceu</p>
+          <p>{{fuelSupply.date}}</p>
         </ion-item>
       </div>
     </ion-list>
-    <h1 (click)="goToSuppliesCharts();">Ver gráficos</h1>
+
+    <ion-fab right bottom>
+        <button ion-fab color="dark" (click)="goToSuppliesCharts();"><ion-icon name="ios-podium-outline"></ion-icon></button>
+        <!-- <ion-fab-list side="top">
+          <button ion-fab (click)="goToSuppliesCharts();"><ion-icon name="md-analytics"></ion-icon></button>
+        </ion-fab-list> -->
+      </ion-fab>
   </ion-content>
   
