@@ -117,7 +117,7 @@ export class HomePage {
     plotGasStationsOnMap(gasStations) {
       for(var i in gasStations){
         let location = new LatLng(parseFloat(gasStations[i].latitude), parseFloat(gasStations[i].longitude));
-        let icon_boycotted = gasStations.boycotted == true ? '_boycotted' : ''
+        let icon_boycotted = gasStations[i].boycotted == true ? '_boycotted' : ''
         let icon_url = `./assets/images/${gasStations[i].icon}${icon_boycotted}.png`
         let markerOptions: MarkerOptions = {
           position: location,

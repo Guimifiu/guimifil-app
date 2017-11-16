@@ -14,7 +14,10 @@ import {
 } from '@ionic/cloud-angular';
 
 @Component({
-  template: `<ion-nav #nav [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #nav [root]="rootPage"></ion-nav>`,
+  providers: [
+    AppMinimize
+  ]
 })
 export class MyApp {
 
