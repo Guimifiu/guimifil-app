@@ -120,6 +120,15 @@ export class AtGasStationPage {
   //   alert.present();
   // }
 
+  presentBoycottedInfoAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Posto boicotado',
+      subTitle: 'Este posto está sendo boicotado, opte por abastecer em outro',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   createPriceSuggestion(typeAttribute: string, value: string) {
     if(value != '') {
       this.gasStation[typeAttribute] = parseFloat(value);

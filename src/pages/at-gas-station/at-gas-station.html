@@ -1,5 +1,4 @@
 <ion-content padding no-bounce class="modal">
-  <div *ngIf="gasStation.boycotted" class="boycotted"> Boicotado </div>
   <div class="modal__title">Você está abastecendo?</div>
   <div class="modal__gas-station">
     <div class="title"> {{gasStation.name}} </div>
@@ -10,6 +9,7 @@
       <div class="reputation" *ngIf='gasStation.reputation'> {{parseFloatValue(gasStation.reputation)}} </div>
       <div class="reputation" *ngIf='!gasStation.reputation'> Sem avaliações </div>
     </div>
+    <div *ngIf="gasStation.boycotted" class="boycotted"> BOICOTADO<ion-icon style="color:black;margin-left:2%;font-size:20px;" (click)="presentBoycottedInfoAlert();" name="ios-information-circle"></ion-icon></div>
     <ion-list class="prices">
       <ion-item>Gasolina: R$ {{parseFloatValue(gasStation.gas_price)}} <ion-icon (click)="presentEditPriceAlert('gas_price')" class="edit-icon" name="md-create"></ion-icon></ion-item>
       <ion-item>Álcool: R$ {{parseFloatValue(gasStation.alcohol_price)}} <ion-icon (click)="presentEditPriceAlert('alcohol_price')" class="edit-icon" name="md-create"></ion-icon></ion-item>
@@ -17,7 +17,7 @@
     </ion-list>
   </div>
   <div class="modal__answer">
-    <button ion-button color="secondary" class="button" (click)="presentFuelSupplyCreationPage();"> Sim </button>
-    <button ion-button color="danger" class="button" (click)="dismiss(false);"> Não </button>
+    <button ion-button color="default" class="button" (click)="presentFuelSupplyCreationPage();"> Sim </button>
+    <button ion-button color="light" class="button" (click)="dismiss(false);"> Não </button>
   </div> 
 </ion-content>

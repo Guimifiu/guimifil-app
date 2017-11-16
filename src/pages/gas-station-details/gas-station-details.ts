@@ -11,6 +11,8 @@ import { PriceSuggestionService } from '../../providers/price-suggestion-service
 import { UserData } from '../../providers/user-data';
 import { FuelSupplyCreationPage } from '../fuel-supply-creation/fuel-supply-creation';
 import { MapService } from '../../providers/map-service';
+import { LoadingService } from '../../providers/loading-service';
+import { LatLng } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'gas-station-details-page',
@@ -18,7 +20,8 @@ import { MapService } from '../../providers/map-service';
   providers: [
     PriceSuggestionService,
     MapService,
-    LaunchNavigator
+    LaunchNavigator,
+    LoadingService
   ]
 })
 export class GasStationDetailsPage {
@@ -26,6 +29,7 @@ export class GasStationDetailsPage {
   gasStation = new GasStation;
   stars = [];
   emptyStars = [];
+  currentPosition: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -33,30 +37,29 @@ export class GasStationDetailsPage {
     public modalCtrl: ModalController,
     public viewCtrl: ViewController,
     public userData: UserData,
-    public priceSuggestionService: PriceSuggestionService,
-    public alertCtrl: AlertController,
     private mapService: MapService,
-    private launchNavigator: LaunchNavigator
+    private launchNavigator: LaunchNavigator,
+    private loadingService: LoadingService,
+    public alertCtrl: AlertController,
   ) {
     this.gasStation = this.navParams.data.gasStation;
+    this.currentPosition = this.navParams.data.currentPosition;
     this.getGasStationStars();
   }
 
   ngOnInit() {
-    this.mapService
-    .getCurrentPosition()
-    .then(currentPosition => {
-      this.mapService.
-        getDirection(
-          currentPosition.latLng.lat,
-          currentPosition.latLng.lng,
-          this.gasStation.latitude,
-          this.gasStation.longitude
-        ).then(gasStationInfo => {
-          this.gasStation.navigation_duration = gasStationInfo['duration'];
-          this.gasStation.navigation_distance = gasStationInfo['distance'];
-        })
+    this.loadingService.showLoading('Buscando dados do Posto...')
+    this.mapService.
+      getDirection(
+        this.currentPosition.latLng.lat,
+        this.currentPosition.latLng.lng,
+        this.gasStation.latitude,
+        this.gasStation.longitude
+      ).then(gasStationInfo => {
+        this.gasStation.navigation_duration = gasStationInfo['duration'];
+        this.gasStation.navigation_distance = gasStationInfo['distance'];
       }).catch(error => console.log(JSON.stringify(error)))
+    .then(() => this.loadingService.dismissLoading())
   }
 
   getGasStationStars() {
@@ -73,57 +76,15 @@ export class GasStationDetailsPage {
     }
   }
   
-  dismiss(answer: boolean, formData?) {
-    var data = {
-      fuelled: answer,
-      formData: formData
-    }
-    this.viewCtrl.dismiss(data);
-  }
-
-  presentEditPriceAlert(typeAttribute: string) {
-      const alert = this.alertCtrl.create({
-        title: 'Editar preço',
-        inputs: [
-          {
-            name: 'value',
-            placeholder: "" + this.gasStation[typeAttribute].toFixed(2),
-          },
-        ],
-        buttons: [
-          {
-            text: 'Cancelar',
-            role: 'cancel',
-            handler: data => {
-              console.log('Cancel clicked');
-            }
-          },
-          {
-            text: 'Salvar',
-            handler: data => {
-              this.createPriceSuggestion(typeAttribute, data.value)
-            }
-          }
-        ]
-      });
-      alert.present();
-  }
-
-  presentFuelSupplyCreationPage() {
-    let modal = this.modalCtrl.create(FuelSupplyCreationPage, { "gasStation": this.gasStation });
-    modal.onDidDismiss(data => {
-      if(data.formData) {
-        this.dismiss(true, data.formData);
-      }
-    });
-    modal.present();
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
   openNavigationApps() {
     let options: LaunchNavigatorOptions = {
       start: ''
     };
-    let destination = [this.gasStation.latitude, this.gasStation.longitude]
+    let destination = `${this.gasStation.latitude},${this.gasStation.longitude}`
     this.launchNavigator.navigate(destination, options)
     .then(
       success => console.log('Launched navigator'),
@@ -131,58 +92,17 @@ export class GasStationDetailsPage {
     );
   }
   
-
-  // presentSupplyValueAlert() {
-  //   const alert = this.alertCtrl.create({
-  //     title: 'Quanto está abastecendo?',
-  //     inputs: [
-  //       {
-  //         name: 'value',
-  //         placeholder: "0.00",
-  //       },
-  //     ],
-  //     buttons: [
-  //       {
-  //         text: 'Cancelar',
-  //         role: 'cancel',
-  //         handler: data => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Salvar',
-  //         handler: data => {
-  //           this.dismiss(true, data.value)
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   alert.present();
-  // }
-
-  createPriceSuggestion(typeAttribute: string, value: string) {
-    if(value != '') {
-      this.gasStation[typeAttribute] = parseFloat(value);
-      var priceSuggestion = new PriceSuggestion;
-      if(typeAttribute === 'gas_price') {
-        priceSuggestion.fuel_type = 'gas'
-      } else if(typeAttribute === 'alcohol_price') {
-        priceSuggestion.fuel_type = 'alcohol'
-      } else if(typeAttribute === 'diesel_price') {
-        priceSuggestion.fuel_type = 'diesel'
-      }
-      priceSuggestion.gas_station_id = this.gasStation.id;
-      priceSuggestion.value = parseFloat(value);
-      this.priceSuggestionService.create(this.userData.currentUser, priceSuggestion)
-      .then(priceSuggestion => {
-
-      })
-      .catch(error => { console.log(JSON.stringify(error))})
-    }
-  }
-
   parseFloatValue(value) {
     return parseFloat(value).toFixed(2);
+  }
+
+  presentBoycottedInfoAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Posto boicotado',
+      subTitle: 'Este posto está sendo boicotado, opte por abastecer em outro',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

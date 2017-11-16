@@ -55,4 +55,5 @@ export class FuelSupplyDetailsPage {
     return parseFloat(value).toFixed(2);
   }
 
+
 }

@@ -13,7 +13,7 @@ export class GasStation {
   gas_station_vicinity: string;
   icon: string;
   boycotted: boolean;
-  navigation_duration: number;
+  navigation_duration: string;
   navigation_distance: string;
 
   constructor() {

@@ -1,4 +1,13 @@
-at-gas-station-page {
+gas-station-details-page {
+
+  .modal .scroll-content{
+    overflow: hidden;
+  }
+
+  .navigation {
+    margin-top: 10%;
+    text-align: center;
+  }
 
   .modal {
     border: 1px solid;
@@ -50,6 +59,7 @@ at-gas-station-page {
   }
 
   .modal__answer {
+    margin-top: 20%;
     text-align: center;
     .button {
       font-size: 20px;
@@ -65,7 +75,9 @@ at-gas-station-page {
   }
 
   .boycotted {
-    background-color: red;
-    color: white
+    margin-top: 10%;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
   }
 }

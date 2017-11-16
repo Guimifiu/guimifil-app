@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AppMinimize } from '@ionic-native/app-minimize';
 
 import { MenuTabsPage } from '../pages/menu-tabs/menu-tabs';
 import { LoginPage } from '../pages/login/login';
@@ -9,7 +10,7 @@ import { UserData } from '../providers/user-data';
 import { User } from '../models/user';
 import {
   Push,
-  PushToken
+  PushToken,
 } from '@ionic/cloud-angular';
 
 @Component({
@@ -24,12 +25,15 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private userData: UserData,
-    public push: Push
+    public push: Push,
+    private appMinimize: AppMinimize
   ) {
     platform
       .ready()
       .then(() => {
-        
+        this.platform.registerBackButtonAction(() => {
+          this.appMinimize.minimize();
+       });
         this.userData.getCurrentUser()
         .then(user => {
           this.userData.login(user);

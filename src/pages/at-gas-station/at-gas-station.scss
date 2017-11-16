@@ -1,5 +1,9 @@
 at-gas-station-page {
 
+  .modal .scroll-content{
+    overflow: hidden;
+  }
+  
   .modal {
     border: 1px solid;
     border-radius: 5px;
@@ -65,7 +69,9 @@ at-gas-station-page {
   }
 
   .boycotted {
-    background-color: red;
-    color: white
+    margin-top: 10%;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
   }
 }

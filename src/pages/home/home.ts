@@ -117,20 +117,21 @@ export class HomePage {
     plotGasStationsOnMap(gasStations) {
       for(var i in gasStations){
         let location = new LatLng(parseFloat(gasStations[i].latitude), parseFloat(gasStations[i].longitude));
+        let icon_boycotted = gasStations.boycotted == true ? '_boycotted' : ''
+        let icon_url = `./assets/images/${gasStations[i].icon}${icon_boycotted}.png`
         let markerOptions: MarkerOptions = {
           position: location,
-          // snippet: gasStations[i].vicinity,
           snippet: "Toque para mais informação",
           title: gasStations[i].name,
-          icon: { url : `./assets/images/${gasStations[i].icon}.png`, size: { height: 30, width: 25 } },
-          infoClick: () => {
-            this.presentGasStationDetailsPage(gasStations[i]);
-          }
+          icon: { url : icon_url, size: { height: 30, width: 25 } },
         };
 
         this.map.addMarker(markerOptions)
         .then((marker: Marker) => {
-
+          marker.addEventListener(GoogleMapsEvent.INFO_CLICK)
+          .subscribe(() => { 
+            this.presentGasStationDetailsPage(gasStations[i]);
+          });
         });
       }
     }
@@ -260,10 +261,20 @@ export class HomePage {
   }
 
   presentGasStationDetailsPage(gasStation) {
-    let modal = this.modalCtrl.create(GasStationDetailsPage, { "gasStation": gasStation });
-    modal.onDidDismiss(data => {
-    });
-    modal.present();
+    this.mapService
+    .getCurrentPosition()
+    .then(currentPosition => {
+      let data = {
+        "gasStation": gasStation,
+        "currentPosition": currentPosition
+      }
+      let modal = this.modalCtrl.create(GasStationDetailsPage, data);
+      modal.onDidDismiss(data => {
+        this.mapService.enableMap();
+      });
+      this.mapService.disableMap();
+      modal.present();
+    }).catch(error => console.log(JSON.stringify(error)))
   }
 
 
