@@ -1,4 +1,4 @@
-<ion-content [@fadeIn]="loginState" class="login-content" padding>  
+<ion-content [@fadeIn]="loginState" class="login-content no-scroll" padding>  
   <ion-row class="logo-row">
     <ion-col></ion-col>
     <ion-col width-67>
@@ -30,6 +30,7 @@
 
       <ion-row>
         <ion-col class="signup-col">
+            <button ion-button class="submit-btn" full type="button" (click)="goToLoginPage()">Voltar</button>
           <button ion-button class="submit-btn" full type="submit">Registrar</button>
         </ion-col>
       </ion-row>

@@ -7,6 +7,7 @@ import { FormErrorMessages } from '../../validators/form-error-messages';
 import { AuthenticationService } from '../../providers/authentication-service';
 import { User } from '../../models/user';
 import { MenuTabsPage } from '../menu-tabs/menu-tabs';
+import { LoginPage } from '../login/login';
 import { ToastService } from '../../providers/toast-service';
 import { LoadingService } from '../../providers/loading-service';
 
@@ -134,6 +135,10 @@ export class RegisterPage extends Form {
     else{
       this.showPopup("Erro", "As senhas inseridas não são iguas" );
     }
+  }
+
+  goToLoginPage() {
+    this.navCtrl.push(LoginPage);
   }
 
   showPopup(title, text) {
